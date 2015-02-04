@@ -11,11 +11,17 @@
 
 
 // Extra bits
-$primaryYellow: rgb(241, 213, 16);
+$primaryYellow: #F8DF1E;
+$midtoneYellow: #A09019;
+$darkYellow: #433C0A;
 $primaryRed: #FF5E99;
 $mainText: rgba(255,255,255,0.85);
-$headingBackgroundColor: $primaryRed;
+$headingBackgroundColor: $primaryYellow;
 $primaryGrey: rgb(63,63,63);
+$textGrey: #3f3f3f;
+$headingColor: $textGrey; 
+
+$linkColor: $primaryYellow;
 
 // Include theme-specific fonts
 @font-face {
@@ -34,7 +40,6 @@ $primaryGrey: rgb(63,63,63);
 
 // Background generator
 @mixin bodyBackground() {
-	//@include radial-gradient( rgba(28,30,32,1), rgba(85,90,95,1) );
 	@include radial-gradient( darken($primaryGrey, 30%), $primaryGrey );
 }
 

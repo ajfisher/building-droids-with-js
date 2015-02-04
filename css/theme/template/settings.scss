@@ -4,27 +4,34 @@
 // Background of the presentation
 $backgroundColor: rgb(63, 63, 63);
 
+$blockMargin: 20px;
 // Primary/body text
 $mainFont: 'Lato', sans-serif;
 $mainFontSize: 36px;
 $mainColor: rgba(255,255,255,0.85);
 
 // Headings
-$headingMargin: 0 0 20px 0;
+$headingMargin: 0 0 $blockMargin 0;
 $headingFont: 'League Gothic', Impact, sans-serif;
-$headingColor: $mainColor;
+//$headingColor: $mainColor;
 $headingLineHeight: 0.9em;
 $headingLetterSpacing: 0.02em;
 $headingTextTransform: uppercase;
 $headingTextShadow: 0px 0px 6px rgba(0,0,0,0.2);
 $heading1TextShadow: $headingTextShadow;
+$headingFontWeight: normal;
+
+$heading1Size: 2.77em;
+$heading2Size: 2.11em;
+$heading3Size: 2.11em;
+$heading4Size: 1.00em;
 
 // Links and actions
-$linkColor: #5EFFA9;
+$linkColor: white;
 $linkColorHover: lighten( $linkColor, 20% );
 
 // Text selection
-$selectionBackgroundColor: #FF5E99;
+$selectionBackgroundColor: #F8DF1E;
 $selectionColor: #fff;
 
 // Generates the presentation background, can be overridden
