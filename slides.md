@@ -14,9 +14,8 @@ javascript for the next 30 minutes.
 ---
 
 ## JS all the real things
+<!-- .slide: data-background="/images/typewriter.jpg" -->
 
-![](/images/responsive_old.png) <!-- .element: width="50%" -->
-![](/images/responsive_old2.png) <!-- .element: width="26.5%" -->
 
 (CC) Flickr <!-- .element: class="attribution" -->
 [Quasimodo](http://www.flickr.com/photos/quasimondo/5203908319)
@@ -39,7 +38,7 @@ And this situation remained the case until the early 2000s.
 ---
 
 ## Hardware is more like software 
-<!-- .slide: data-background="/images/tables.jpg" -->
+<!-- .slide: data-background="/images/typewriter.jpg" -->
 
 (CC) Flickr <!-- .element: class="attribution" -->
 [Phill Farrugia](http://phillfarrugia.com/post/92908852193/spent-the-day-building-robots-at-nodebotsau)
@@ -82,7 +81,7 @@ Then we’ll play with some examples.
 ---
 
 ## Working with hardware
-<!-- .slide: data-background="/images/forest.jpg" -->
+<!-- .slide: data-background="/images/atmega.jpg" -->
 
 (CC) Flickr <!-- .element: class="attribution" -->
 [Oskay](http://www.flickr.com/photos/oskay/2310115216/)
@@ -100,7 +99,7 @@ And somewhere in between.
 ---
 
 ### Working with the metal
-<!-- .slide: data-background="/images/video_standards.svg" -->
+<!-- .slide: data-background="/images/metal.jpg" -->
 
 (CC) Flickr <!-- .element: class="attribution" -->
 [Wonderlane](http://www.flickr.com/photos/wonderlane/3198166347) 
@@ -117,10 +116,10 @@ example has TWO KILOBYTES of RAM.
 ---
 
 ### Working low level
-<!-- .slide: data-background="/images/man.jpg" -->
+<!-- .slide: data-background="/images/intel_4004.jpg" -->
 
-(cc) flickr <!-- .element: class="attribution" -->
-[lisovy](http://www.flickr.com/photos/lisovy/4677688431/)
+(CC) Flickr <!-- .element: class="attribution" -->
+[Rostislav Lisovy](http://www.flickr.com/photos/lisovy/4677688431/)
 
 Notes:
 Playing at the chip level gives you masses of control but your iteration
@@ -131,9 +130,9 @@ nightmare.
 ---
 
 ### Device hacking
-<!-- .slide: data-background="/images/man.jpg" -->
+<!-- .slide: data-background="/images/little_printer.jpg" -->
 
-(cc) flickr <!-- .element: class="attribution" -->
+(CC) Flickr <!-- .element: class="attribution" -->
 [Roo Reynolds](http://www.flickr.com/photos/rooreynolds/9350631793)
 
 Notes:
@@ -150,10 +149,10 @@ you can’t change the way the hardware works.
 ---
 
 ### AR Drone
-<!-- .slide: data-background="/images/man.jpg" -->
+<!-- .slide: data-background="/images/ardrone.jpg" -->
 
-(cc) flickr <!-- .element: class="attribution" -->
-[neeravbhatt](http://www.flickr.com/photos/neeravbhatt/6885424870)
+(CC) Flickr <!-- .element: class="attribution" -->
+[Neerav Bhatt](http://www.flickr.com/photos/neeravbhatt/6885424870)
 
 
 Notes:
@@ -168,9 +167,9 @@ playing about with really easily.
 ---
 
 ### Hardware in comfort
-<!-- .slide: data-background="/images/man.jpg" -->
+<!-- .slide: data-background="/images/keyboard_pants.jpg" -->
 
-(cc) flickr <!-- .element: class="attribution" -->
+(CC) Flickr <!-- .element: class="attribution" -->
 [Zack Hoeken](http://www.flickr.com/photos/hoeken/3519955473/)
 
 
@@ -184,9 +183,9 @@ people like us - web designers and developers to be able to tinker with.
 ---
 
 ### Sketching in hardware
-<!-- .slide: data-background="/images/ironman.jpg" -->
+<!-- .slide: data-background="/images/sketching.jpg" -->
 
-(cc) Flickr <!-- .element: class="attribution"-->
+(CC) Flickr <!-- .element: class="attribution"-->
 [Camille Moussette](http://www.flickr.com/photos/9225693@N08/6051548279)
 
 Notes:
@@ -203,7 +202,7 @@ To show you how easy this is let’s make something here and now.
 
 PUT AN SVG DIAGRAM HERE
 
-(cc) Flickr <!-- .element: class="attribution"-->
+(CC) Flickr <!-- .element: class="attribution"-->
 [Camille Moussette](http://www.flickr.com/photos/9225693@N08/6051548279)
 
 Notes:
@@ -230,10 +229,10 @@ Hang on - that sounds suspiciously like an API...
 ---
 
 ### Hardware hello world
-<!-- .slide: data-background="/images/uncanny.jpg" -->
+<!-- .slide: data-background="/images/hello_world.jpg" -->
 
 (CC) Flickr <!-- .element: class="attribution" -->
-[pj_vanf](http://www.flickr.com/photos/vanf/5210360116)
+[Daniel Novta](http://www.flickr.com/photos/vanf/5210360116)
 
 Notes:
 So we plug in an LED (this one is bigger than normal so you can see it
@@ -277,9 +276,13 @@ And there we go - button click to turn a light on and off via a web browser.
 ### The JS hardware stack
 
 Arduino (sensors and actuators)
+
 Firmata (communications protocol)
+
 NodeJS (application logic)
+
 WS/HTTP (networking and security protocols)
+
 Client (UI, input, visualisation)
 
 TODO: Move this to the firmata bit
@@ -351,7 +354,7 @@ This means we can prototype really, really fast and build cool things.
 ---
 
 ### Build stuff
-<!-- .slide: data-background="/images/devices.jpg" -->
+<!-- .slide: data-background="/images/pulse.jpg" -->
 
 Notes:
 This was a pulse oximeter that someone made with an LED, a light sensor
@@ -360,7 +363,7 @@ and some signal processing in JS
 ---
 
 ### Build stuff
-<!-- .slide: data-background="/images/time.jpg" -->
+<!-- .slide: data-background="/images/nerf.jpg" -->
 
 Notes:
 A nerf gun attached to a build system to find and then shoot the developer
@@ -369,7 +372,7 @@ that broke a build.
 ---
 
 ### Build stuff
-<!-- .slide: data-background="/images/geography.jpg" -->
+<!-- .slide: data-background="/images/simplebots.jpg" -->
 
 Notes:
 And of course, robots.
@@ -377,10 +380,10 @@ And of course, robots.
 ---
 
 ### Looking for droids?
-<!-- .slide: data-background="/images/train.jpg" data-state="pushdown" -->
+<!-- .slide: data-background="/images/droids.jpg" -->
 
 (CC) Flickr <!-- .element: class="attribution" -->
-[Solo](http://www.flickr.com/photos/donsolo/3768623542/)
+[⣫⣤⣇⣤](http://www.flickr.com/photos/donsolo/3768623542/)
 
 Notes:
 So let’s look at a robot that is built with web tech.
@@ -389,9 +392,7 @@ So let’s look at a robot that is built with web tech.
 
 ### SimpleBot NodeBot
 
-![](/images/mobile-use.jpg) <!-- .element: width="68%" -->
-
-Device class-time of day meta-analysis <!-- .element: class="attribution" -->
+TODO: SB here
 
 Notes:
 This is a NodeBot called the SimpleBot. It was designed in Australia as a way 
@@ -402,6 +403,8 @@ It uses two servo motors, some AA batteries, an arduino and your computer runnin
 node JS.
 
 These are what we'll build in the workshop today with your kits.
+
+---
 
 ### SimpleBot layout
 
@@ -420,7 +423,9 @@ The things you should be aware of are:
 - Software and responding to errors and external events matters make sure you spend time on code
 - Coreflute is strong in one direction and weaker in the other, use this to shape your bot.
 
-### Challenge
+---
+
+## Challenge
 
 TODO: Robot fights
 
@@ -436,6 +441,8 @@ out themselves.
 
 If you aren't interested in battling your robot then we will also do a quick
 show and tell at the end as well if you want to show us what you have got.
+
+---
 
 ## Resources
 
