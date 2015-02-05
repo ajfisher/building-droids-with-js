@@ -268,8 +268,7 @@ easily) and then we’ll need to write some code.
 ### Hello world code
 
 ```
-var firmata = require('firmata');
-var repl = require("repl");
+var firmata = require('firmata'), repl = require("repl");
 
 if (process.argv[2] == null) {
     console.log("You need to supply a device to connect to");
@@ -284,8 +283,6 @@ var board = new firmata.Board(process.argv[2], function(err) {
     }
     console.log('connected');
 
-    //board.pinMode(ledPin, board.firmata.MODES.OUTPUT);
-    // board.digitalWrite(13, 1)
     repl.start("board> ").context.board = board;
 });
 ```
@@ -306,7 +303,69 @@ do this it turns the LED on and off.
 
 ### Web thing hello world
 
-http://github.com/ajfisher/nbscaffold
+```
+var firmata = require("firmata");
+
+if (process.argv[2] == null) {
+    console.log("Please supply a device to connect to");
+    process.exit();
+}
+
+// web server elements
+var express = require('express');
+var app = express();
+var http = require('http');
+var server = http.createServer(app);
+var board;
+
+// Set up the application server
+
+app.configure(function() {
+    app.set('port', 8001);
+    app.use(app.router);
+    app.use(express.static(__dirname + '/public'));
+});
+
+server.listen(app.get('port'));
+
+// Set up Socket IO
+var io = require('socket.io').listen(server);
+io.set('log level', 1);
+
+app.get('/', function(request, response) {
+    response.sendfile(__dirname + '/public/index.html');
+});
+
+io.sockets.on("connection", function(socket) {
+
+    if (board.ready) {
+        socket.emit("connect_ack", {
+            msg: "Welcome Control", 
+            state: "ONLINE"
+        });
+    } else {
+        socket.emit("connect_ack", {
+            msg: "Welcome Control", 
+            state: "NOPINS"
+        });
+    }
+
+    socket.on("toggle", function(data) {
+        board.digitalWrite(pin, data.state);
+    });
+});
+
+// SET up the arduino and firmata
+var pin = 13; // led pin to turn on.
+board = new firmata.Board(process.argv[2], function(err) {
+    if (err){
+        console.log(err);
+        process.exit();
+    }
+    console.log("Control via your browser now");
+});
+
+```
 
 Notes:
 So we’re all web devs here so let’s not stray too far away from our comfort
@@ -325,6 +384,15 @@ click so nothing too interesting.
 
 And there we go - button click to turn a light on and off via a web browser.
 
+
+---
+
+### Web thing hello world
+
+github.com/ajfisher/nbscaffold
+
+Notes:
+The code you can get for this here
 
 ---
 
