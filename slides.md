@@ -439,6 +439,10 @@ Well we can, thanks to a project called Johnny Five that was kicked off about
 ---
 
 ### Johnny Five
+<!-- .slide: data-background="/images/rick.jpg" -->
+
+(C)<!-- .element: class="attribution" -->
+[Joanne Daudier](https://twitter.com/jdaudier)
 
 Notes:
 Johnny Five uses the firmata protocol we were just using but provides
