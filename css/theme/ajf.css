@@ -313,3 +313,8 @@ body {
 
 .reveal pre {
   margin: 0.5em 0; }
+
+iframe.external {
+  display: block;
+  width: 100%;
+  margin-top: 1em; }
