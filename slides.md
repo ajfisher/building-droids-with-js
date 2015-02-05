@@ -356,7 +356,7 @@ io.sockets.on("connection", function(socket) {
 });
 
 // SET up the arduino and firmata
-var pin = 13; // led pin to turn on.
+var pin = 10; // led pin to turn on.
 board = new firmata.Board(process.argv[2], function(err) {
     if (err){
         console.log(err);
@@ -384,10 +384,11 @@ click so nothing too interesting.
 
 And there we go - button click to turn a light on and off via a web browser.
 
-
 ---
 
 ### Web thing hello world
+
+<iframe class="external" src="http://localhost:8001/"></iframe>
 
 github.com/ajfisher/nbscaffold
 
@@ -473,7 +474,8 @@ So let’s look at a robot that is built with web tech.
 
 ### SimpleBot NodeBot
 
-TODO: SB here
+![SimpleBot](/images/simplebot.jpg) <!-- .element width="55%" -->
+
 
 Notes:
 This is a NodeBot called the SimpleBot. It was designed in Australia as a way 
@@ -488,8 +490,7 @@ These are what we'll build in the workshop today with your kits.
 ---
 
 ### SimpleBot layout
-
-TODO: Image simplebot template
+<!-- .slide: data-background="/images/template.jpg" data-background-size="70%" -->
 
 Notes:
 
@@ -507,8 +508,11 @@ The things you should be aware of are:
 ---
 
 ## Challenge
+<!-- .slide: data-background="/images/sumobot.jpg" -->
 
-TODO: Robot fights
+(C) <!-- .element: class="attribution" -->
+[Austin NodeBots](http://twitter.com/austinnodebots)
+
 
 Notes:
 At the end of the day we will have a sumo fight to find the best SimpleBot sumo
@@ -527,7 +531,18 @@ show and tell at the end as well if you want to show us what you have got.
 
 ## Resources
 
-SimpleBot repo
-This presentation
+* github.com/nodebotsau/simplebot
+* ajf.io/buildingdroids
+* github.com/rwaldron/johnny-five
 
+---
+
+
+# Building Droids with JavaScript
+
+<!-- .slide: class="title" -->
+
+SLASSCOM Robotics Workshop, February 6, 2015 <!-- .element: class="location" -->
+
+Andrew Fisher @ajfisher (ajf.io/buildingdroids) <!-- .element: class="author" -->
 
