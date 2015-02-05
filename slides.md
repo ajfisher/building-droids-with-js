@@ -2,7 +2,7 @@
 
 <!-- .slide: class="title" -->
 
-K-Nights, February 6, 2015 <!-- .element: class="location" -->
+SLASSCOM Robotics Workshop, February 6, 2015 <!-- .element: class="location" -->
 
 Andrew Fisher @ajfisher <!-- .element: class="author" -->
 
@@ -38,10 +38,10 @@ And this situation remained the case until the early 2000s.
 ---
 
 ## Hardware is more like software 
-<!-- .slide: data-background="/images/typewriter.jpg" -->
+<!-- .slide: data-background="/images/working.jpg" -->
 
-(CC) Flickr <!-- .element: class="attribution" -->
-[Phill Farrugia](http://phillfarrugia.com/post/92908852193/spent-the-day-building-robots-at-nodebotsau)
+JS Conf 2013 <!-- .element: class="attribution" -->
+[Matthew Bergman](http://twitter.com/fotoverite)
 
 Notes:
 Until this came along - this is an arduino and it has changed the way
@@ -57,7 +57,7 @@ More recently, over the last 2 years, some great work has been done in the
 node community getting JS to work with hardware like this - to the point
 where working with hardware using javascript is now extremely easy.
 
-So tonight, I want to talk to you about that and how all of you can all start
+So today, I want to talk to you about that and how all of you can all start
 working with hardware with JS and along the way we’ll bump into some
 robots.
 
@@ -198,12 +198,8 @@ To show you how easy this is let’s make something here and now.
 ---
 
 ### First steps
-<!-- .slide: data-background="/images/ironman.jpg" -->
 
-PUT AN SVG DIAGRAM HERE
-
-(CC) Flickr <!-- .element: class="attribution"-->
-[Camille Moussette](http://www.flickr.com/photos/9225693@N08/6051548279)
+![Arduino](/images/arduino.jpg)<!-- .element: width="60%" -->
 
 Notes:
 We’re going to focus on the arduino. 
@@ -224,7 +220,36 @@ off, take a reading etc. Firmata is a neat idea as it exposes nearly all of the
 features of the arduino but via a protocol so now you can control it from
 somewhere else that talks the firmata protocol...
 
-Hang on - that sounds suspiciously like an API...
+Hang on - that sounds suspiciously like an API and an API can tap into other things.
+
+---
+
+### The JS hardware stack
+
+Arduino (sensors and actuators)
+
+Firmata (communications protocol)
+
+NodeJS (application logic)
+
+WS/HTTP (networking and security protocols)
+
+Client (UI, input, visualisation)
+
+Notes:
+So this is what the JS hardware stack looks like. 
+
+We’ve got an arduino with sensors and actuators. Firmata which provides
+the communications protocol. The NodeJS application gives us application
+logic and integration with other libraries.
+
+Networking is provided over http or websockets and this can give us
+security and encryption.
+
+Finally the web page for the client gives as input methods, a data viz layer
+as well as user interface.
+
+Let's build something using this now.
 
 ---
 
@@ -238,6 +263,34 @@ Notes:
 So we plug in an LED (this one is bigger than normal so you can see it
 easily) and then we’ll need to write some code.
 
+---
+
+### Hello world code
+
+```
+var firmata = require('firmata');
+var repl = require("repl");
+
+if (process.argv[2] == null) {
+    console.log("You need to supply a device to connect to");
+    process.exit()
+}
+
+var board = new firmata.Board(process.argv[2], function(err) {
+
+    if (err) {
+        console.log(err);
+        process.exit();
+    }
+    console.log('connected');
+
+    //board.pinMode(ledPin, board.firmata.MODES.OUTPUT);
+    // board.digitalWrite(13, 1)
+    repl.start("board> ").context.board = board;
+});
+```
+
+Notes:
 Go interactive version here to show connecting and turning an LED on and
 off.
 
@@ -249,6 +302,7 @@ digitalWrite command. Then we can make it go LOW and as you can see as I
 do this it turns the LED on and off.
 
 ---
+
 
 ### Web thing hello world
 
@@ -271,40 +325,14 @@ click so nothing too interesting.
 
 And there we go - button click to turn a light on and off via a web browser.
 
----
-
-### The JS hardware stack
-
-Arduino (sensors and actuators)
-
-Firmata (communications protocol)
-
-NodeJS (application logic)
-
-WS/HTTP (networking and security protocols)
-
-Client (UI, input, visualisation)
-
-TODO: Move this to the firmata bit
-
-Notes:
-So this is what the JS hardware stack looks like. 
-
-We’ve got an arduino with sensors and actuators. Firmata which provides
-the communications protocol. The NodeJS application gives us application
-logic and integration with other libraries.
-
-Networking is provided over http or websockets and this can give us
-security and encryption.
-
-Finally the web page for the client gives as input methods, a data viz layer
-as well as user interface.
 
 ---
 
 ### Easy install
 
 ```
+# from command line post node install
+
 npm install firmata express socket.io
 ```
 
@@ -354,28 +382,13 @@ This means we can prototype really, really fast and build cool things.
 ---
 
 ### Build stuff
-<!-- .slide: data-background="/images/pulse.jpg" -->
+<!-- .slide: data-background="/images/catbot.jpg" -->
+
+(C)<!-- .element: class="attribution" -->
+[Suze Hinton](https://twitter.com/noopkat)
 
 Notes:
-This was a pulse oximeter that someone made with an LED, a light sensor
-and some signal processing in JS
-
----
-
-### Build stuff
-<!-- .slide: data-background="/images/nerf.jpg" -->
-
-Notes:
-A nerf gun attached to a build system to find and then shoot the developer
-that broke a build.
-
----
-
-### Build stuff
-<!-- .slide: data-background="/images/simplebots.jpg" -->
-
-Notes:
-And of course, robots.
+Like Robots.
 
 ---
 
