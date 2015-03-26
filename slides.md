@@ -2,14 +2,14 @@
 
 <!-- .slide: class="title" -->
 
-SLASSCOM Robotics Workshop, February 6, 2015 <!-- .element: class="location" -->
+Decompress, March 28, 2015 <!-- .element: class="location" -->
 
 Andrew Fisher @ajfisher <!-- .element: class="author" -->
 
 Notes:
 Hi! My name is Andrew Fisher and I’m an interaction researcher. Today I
 want to talk to you about web connected hardware and building droids with
-javascript for the next 30 minutes.
+javascript for the next 15 minutes.
 
 ---
 
@@ -110,9 +110,6 @@ low level. It usually means writing C or C++. You can get a bit of
 abstraction with hardware libraries but even with good libraries you need to
 write a lot of code.
 
-You have insane limitations. It’s like going back to the 80s - an arduino for
-example has TWO KILOBYTES of RAM.
-
 ---
 
 ### Working low level
@@ -158,11 +155,7 @@ you can’t change the way the hardware works.
 Notes:
 A good example of this is the AR Drone - you can play with using a node
 library to interact with the copter directly to do some really interesting
-things but you can’t fundamentally change the hardware. Having said that,
-people have done some fantastic things at this level.
-
-So there’s plenty of very interesting devices you can grab hold of and start
-playing about with really easily.
+things but you can’t fundamentally change the hardware. 
 
 ---
 
@@ -190,8 +183,7 @@ people like us - web designers and developers to be able to tinker with.
 
 Notes:
 So this approach gives you the ability to prototype rapidly as well as work
-almost directly with the hardware. There are some limitations around some
-hardware but to start off with and for some prototyping that doesn’t matter.
+almost directly with the hardware.
 
 To show you how easy this is let’s make something here and now.
 
@@ -211,16 +203,14 @@ electrocute yourself. There is also huge amounts of community information
 about them.
 
 Now the arduino is way too under powered to run JavasScript so we’re going
-to use our computer to do that. As such we just need to pass messages
-down the wire to the arduino over the USB cable so for that we use a
-protocol called Firmata.
+to use our computer to do that using a protocol called Firmata.
 
 So Firmata allows you to tell the arduino to do things like turn a pin on or
 off, take a reading etc. Firmata is a neat idea as it exposes nearly all of the
 features of the arduino but via a protocol so now you can control it from
 somewhere else that talks the firmata protocol...
 
-Hang on - that sounds suspiciously like an API and an API can tap into other things.
+Hang on - that sounds suspiciously like an API.
 
 ---
 
@@ -268,7 +258,7 @@ easily) and then we’ll need to write some code.
 ### Hello world code
 
 ```
-var firmata = require('firmata'), repl = require("repl");
+var firmata = require('firmata');
 
 if (process.argv[2] == null) {
     console.log("You need to supply a device to connect to");
@@ -277,13 +267,14 @@ if (process.argv[2] == null) {
 
 var board = new firmata.Board(process.argv[2], function(err) {
 
-    if (err) {
-        console.log(err);
-        process.exit();
-    }
     console.log('connected');
 
-    repl.start("board> ").context.board = board;
+    board.pinMode(10, 1);
+    var state = false;
+    setInterval(function() {
+        state = ! state;
+        board.digitalWrite(10, state);
+    }, 1000);
 });
 ```
 
@@ -455,6 +446,15 @@ This means we can prototype really, really fast and build cool things.
 ---
 
 ### Build stuff
+
+Node Rockets??
+
+Notes:
+Like Rockets
+
+---
+
+### Build stuff
 <!-- .slide: data-background="/images/catbot.jpg" -->
 
 (C)<!-- .element: class="attribution" -->
@@ -476,62 +476,20 @@ So let’s look at a robot that is built with web tech.
 
 ---
 
-### SimpleBot NodeBot
+### NoDLE
 
-![SimpleBot](/images/simplebot.jpg) <!-- .element width="55%" -->
-
-
-Notes:
-This is a NodeBot called the SimpleBot. It was designed in Australia as a way 
-to be able to teach simple robotics using inexpensive components but in a way
-that can be extended.
-
-It uses two servo motors, some AA batteries, an arduino and your computer running
-node JS.
-
-These are what we'll build in the workshop today with your kits.
-
----
-
-### SimpleBot layout
-<!-- .slide: data-background="/images/template.jpg" data-background-size="70%" -->
+<iframe class="nodle" src="http://10.0.2.40:8000/"></iframe>
 
 Notes:
 
-The core of the robot won't take you long to build. They are designed to go 
-together very rapidly so you can spend time customising them and extending them.
+This is an ongoing NodeBot project called NoDLE. It uses a Raspberry Pi for 
+running node, an arduino to control motors and servos, it can capture and
+process video and it can tell its distance. 
 
-The things you should be aware of are:
-
-- Get the battery as close to the centre of the wheels as possible for balance.
-- Make sure you have good traction. Rubber bands, hot glue work well here.
-- Your robot has differential drive which means you can spin it on the spot if you need to
-- Software and responding to errors and external events matters make sure you spend time on code
-- Coreflute is strong in one direction and weaker in the other, use this to shape your bot.
+And this is all just built with web tech.
 
 ---
 
-## Challenge
-<!-- .slide: data-background="/images/sumobot.jpg" -->
-
-(C) <!-- .element: class="attribution" -->
-[Austin NodeBots](http://twitter.com/austinnodebots)
-
-
-Notes:
-At the end of the day we will have a sumo fight to find the best SimpleBot sumo
-champions.
-
-The battles will be elimination at all stages.
-
-The only rules are that you cannot build a bot that is bigger than 30cm on any dimension
-and that you win by the other player leaving the circle icluding if they drive
-out themselves.
-
-If you aren't interested in battling your robot then we will also do a quick
-show and tell at the end as well if you want to show us what you have got.
-
----
 
 ## Resources
 
@@ -546,7 +504,13 @@ show and tell at the end as well if you want to show us what you have got.
 
 <!-- .slide: class="title" -->
 
-SLASSCOM Robotics Workshop, February 6, 2015 <!-- .element: class="location" -->
+Decompress, March 28, 2015 <!-- .element: class="location" -->
 
 Andrew Fisher @ajfisher (ajf.io/buildingdroids) <!-- .element: class="author" -->
 
+Notes:
+
+So today I've set up a space that you can come and play with things. We have 
+various bots and if you want to build one you can. There's some kits if you want
+to take one with you and if we get enough interest, maybe we'll do a sumo bot
+battle at the end of the day.
