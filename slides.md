@@ -21,12 +21,10 @@ javascript for the next 15 minutes.
 [Quasimodo](http://www.flickr.com/photos/quasimondo/5203908319)
 
 Notes:
-Hardware for a long time was really hard. My initial interest in computing
-really came from an interest in electronics. But the reality was that for a kid
-growing up in the late 80s, early 90s, building serious hardware was
+My initial interest in computing came from an interest in electronics. 
+But the reality was that for a kid growing up in the late 80s, building serious hardware was
 prohibitively expensive and required facilities that most kids didn’t have
-access to in those days - even the idea of something like a hacker space or
-a makerspace didn’t exist then.
+access to in those days.
 
 Doing anything non-trivial in hardware was a very difficult undertaking. As
 a result, I moved to software. As you’d expect, in the world of software, the
@@ -37,11 +35,11 @@ And this situation remained the case until the early 2000s.
 
 ---
 
-## Hardware is becoming more like software GET ARDUINO PIC 
-<!-- .slide: data-background="/images/working.jpg" -->
+## Hardware is becoming more like software 
+<!-- .slide: data-background="/images/arduino_nano.jpg" -->
 
-JS Conf 2013 <!-- .element: class="attribution" -->
-[Matthew Bergman](http://twitter.com/fotoverite)
+(CC) <!-- .element: class="attribution" -->
+[Phil Farugia](#)
 
 Notes:
 Until this came along - this is an arduino and it has changed the way
