@@ -37,7 +37,7 @@ And this situation remained the case until the early 2000s.
 
 ---
 
-## Hardware is more like software 
+## Hardware is becoming more like software GET ARDUINO PIC 
 <!-- .slide: data-background="/images/working.jpg" -->
 
 JS Conf 2013 <!-- .element: class="attribution" -->
@@ -108,21 +108,8 @@ Notes:
 Here we are usually writing code specifically for a chip or board at a very
 low level. It usually means writing C or C++. You can get a bit of
 abstraction with hardware libraries but even with good libraries you need to
-write a lot of code.
-
----
-
-### Working low level
-<!-- .slide: data-background="/images/intel_4004.jpg" -->
-
-(CC) Flickr <!-- .element: class="attribution" -->
-[Rostislav Lisovy](http://www.flickr.com/photos/lisovy/4677688431/)
-
-Notes:
-Playing at the chip level gives you masses of control but your iteration
-cycles take time and you’re constantly thinking about things like memory
-and garbage collection and not frying a chip. Debugging is also generally a
-nightmare.
+write a lot of code. You get lots of control but the price is speed - iterations
+take a lot longer.
 
 ---
 
@@ -182,9 +169,6 @@ people like us - web designers and developers to be able to tinker with.
 [Camille Moussette](http://www.flickr.com/photos/9225693@N08/6051548279)
 
 Notes:
-So this approach gives you the ability to prototype rapidly as well as work
-almost directly with the hardware.
-
 To show you how easy this is let’s make something here and now.
 
 ---
@@ -196,9 +180,7 @@ To show you how easy this is let’s make something here and now.
 Notes:
 We’re going to focus on the arduino. 
 
-This is an arduino - they cost about $30, they are awesome and come in
-many different forms for different applications from small to large. They run
-off USB or a battery so it’s hard to blow them up and even harder to
+They run off USB or a battery so it’s hard to blow them up and even harder to
 electrocute yourself. There is also huge amounts of community information
 about them.
 
@@ -259,7 +241,6 @@ easily) and then we’ll need to write some code.
 
 ```
 var firmata = require('firmata');
-
 if (process.argv[2] == null) {
     console.log("You need to supply a device to connect to");
     process.exit()
@@ -269,7 +250,7 @@ var board = new firmata.Board(process.argv[2], function(err) {
 
     console.log('connected');
 
-    board.pinMode(10, 1);
+    board.pinMode(10, board.OUTPUT);
     var state = false;
     setInterval(function() {
         state = ! state;
@@ -279,15 +260,14 @@ var board = new firmata.Board(process.argv[2], function(err) {
 ```
 
 Notes:
-Go interactive version here to show connecting and turning an LED on and
-off.
+// Go interactive version here to show connecting and turning an LED on and
+// off.
 
-I’ve got a little bit of scaffolding here so I don’t have to type everything. But
-you can see it just creates a board and connects it. Now it’s connected we
-can tell the board we want to assign a pin as an output then we’ll tell it to
-make the pin go HIGH which means send it some volts - we do that with the
-digitalWrite command. Then we can make it go LOW and as you can see as I
-do this it turns the LED on and off.
+This is a pretty simple script. It sets up a connection to a board then sets 
+pin 10 to be an OUTPUT. After that there's a timer which simply changes the
+pin 10 to be 1 or 0 or in electronics terms, high or low.
+
+That is the blink tag in JavaScript on hardware.
 
 ---
 
@@ -363,11 +343,8 @@ So we’re all web devs here so let’s not stray too far away from our comfort
 zone. Let’s wrap a web interface around this light so we can turn it on and
 off with a click of a button on a page.
 
-We can’t do this interactively very easily so I’ll show you some code.
-
 This is a bit of overkill but we’re going to use express and web sockets so
-it’s a bit more realtime but also it will lay the foundation for what I’ll show
-you next.
+it’s a bit more realtime.
 
 We set up the socket messages on the server to switch things on and off .
 On the client side all our HTML and JS is doing is just sending messages on
@@ -398,10 +375,8 @@ npm install firmata express socket.io
 
 Notes:
 So this stack can be created with pretty much just this command plus an
-arduino with firmata on it in about 2 minutes.
-
-Which is pretty cool. And it’s robust enough now that it’s most likely going
-to work the first time you try it.
+arduino with firmata on it in about 2 minutes and it's generally going to work.
+Yes, even on Windows.
 
 Now it’s pretty cool to be able to connect a web page to a bit of hardware
 right?
@@ -411,7 +386,7 @@ right?
 ### Hardware as objects
 
 ```
-var led = new five.Led(13);
+var led = new Led(13);
 led.blink(1000);
 led.stop();
 led.on();
@@ -422,7 +397,8 @@ Wouldn’t it be great if we could do something like this rather than telling
 the pins to turn on and off?
 
 Wouldn’t it be cool to have some sort of abstraction for LEDs which are
-super common and be able to interact with them in standard ways?
+super common and be able to interact with them in standard ways? Wouldn't it be
+great to be able to do this for all sorts of common hardware?
 
 Well we can, thanks to a project called Johnny Five that was kicked off about
 2 years ago by a chap called Rick Waldron.
@@ -442,6 +418,15 @@ motors, accelerometers - all sorts of things. The list keeps growing all the
 time and there’s now over 60 committers to the project.
 
 This means we can prototype really, really fast and build cool things.
+
+---
+
+### Build stuff
+
+HRM??
+
+Notes:
+Like pulse oximeters
 
 ---
 
@@ -480,6 +465,8 @@ So let’s look at a robot that is built with web tech.
 
 <iframe class="nodle" src="http://10.0.2.40:8000/"></iframe>
 
+github.com/ajfisher/ajnodebot
+
 Notes:
 
 This is an ongoing NodeBot project called NoDLE. It uses a Raspberry Pi for 
@@ -496,9 +483,15 @@ And this is all just built with web tech.
 * github.com/nodebotsau/simplebot
 * ajf.io/buildingdroids
 * github.com/rwaldron/johnny-five
+* nodebotsau.io
+
+Notes: 
+
+If you want to play with this stuff, here's some resources you can have a look
+at to go further. We also run events at Hack Melbourne every month on the first
+Wednesday as well as bigger events through the year.
 
 ---
-
 
 # Building Droids with JavaScript
 
@@ -510,7 +503,7 @@ Andrew Fisher @ajfisher (ajf.io/buildingdroids) <!-- .element: class="author" --
 
 Notes:
 
-So today I've set up a space that you can come and play with things. We have 
+So today I've set up a space that you can come and play in. We have 
 various bots and if you want to build one you can. There's some kits if you want
 to take one with you and if we get enough interest, maybe we'll do a sumo bot
 battle at the end of the day.
