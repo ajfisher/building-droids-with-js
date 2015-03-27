@@ -422,20 +422,26 @@ This means we can prototype really, really fast and build cool things.
 ---
 
 ### Build stuff
+<!-- .slide: data-background="/images/tetris.gif" -->
 
-HRM??
+(C)<!-- .element: class="attribution" -->
+[Adrian Catalan](https://twitter.com/ykro)
 
 Notes:
-Like pulse oximeters
+Like tetris games
 
 ---
 
 ### Build stuff
+<!-- .slide: data-background="/images/skirt.jpg" -->
 
-Node Rockets??
+
+Skirt (C)<!-- .element: class="attribution" -->
+[Kassandra Perch](https://twitter.com/nodebotanist) | 
+Image (CC) [Matthew Bergman](https://www.flickr.com/photos/matthewbergman/15969524882/in/set-72157649619016521)
 
 Notes:
-Like Rockets
+Like skirts that you can control the colours on
 
 ---
 
