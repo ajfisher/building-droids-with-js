@@ -467,7 +467,7 @@ So let’s look at a robot that is built with web tech.
 
 ### NoDLE
 
-<iframe class="nodle" src="http://10.0.2.40:8000/"></iframe>
+<iframe class="nodle" src="http://192.168.40.1:8000/"></iframe>
 
 github.com/ajfisher/ajnodebot
 
