@@ -2,14 +2,44 @@
 
 <!-- .slide: class="title" -->
 
-Decompress, March 28, 2015 <!-- .element: class="location" -->
+Xero NodeBots Day, May 8, 2015 <!-- .element: class="location" -->
 
 Andrew Fisher @ajfisher <!-- .element: class="author" -->
 
 Notes:
-Hi! My name is Andrew Fisher and I’m an interaction researcher. Today I
-want to talk to you about web connected hardware and building droids with
-javascript for the next 15 minutes.
+Hi! My name is Andrew Fisher and besides being an interaction researcher I love
+to build robots - especially ones that use web tech. So today we're 
+going to use javascript to build robots or other connected things and give 
+some of you a first taste of robotics and for some of you show you how feasible
+it is now to create physical products using web technologies you're already 
+familiar with.
+
+
+---
+
+## Plan
+
+1. Background on JS + hardware
+2. Group basics walkthrough on electronics
+3. Start hacking
+4. Some food
+5. More hacking
+6. Show and tell
+
+Notes:
+Overview of the day.
+
+How many of you have done any nodebots stuff before?
+How many of you have done any electronics before?
+
+Okay so those who have can spend the next half hour doing some planning around
+what you might want to build with your team. Those that haven't, I'm going to
+give you a crash course in electronics and how to get it doing things with 
+javascript. By the time we break up into groups all of you should have got
+your hands dirty actually making something work electronically.
+
+So I'm going to start with a bit of background about why on earth you'd want
+to use javascript with hardware.
 
 ---
 
@@ -55,9 +85,8 @@ More recently, over the last 2 years, some great work has been done in the
 node community getting JS to work with hardware like this - to the point
 where working with hardware using javascript is now extremely easy.
 
-So today, I want to talk to you about that and how all of you can all start
-working with hardware with JS and along the way we’ll bump into some
-robots.
+So I'm going to start by showing you how the stack works and then we'll consider
+the electronics by building some stuff together.
 
 ---
 
@@ -167,7 +196,8 @@ people like us - web designers and developers to be able to tinker with.
 [Camille Moussette](http://www.flickr.com/photos/9225693@N08/6051548279)
 
 Notes:
-To show you how easy this is let’s make something here and now.
+I'll walk you through the stack and then we'll all spend 10 minutes building
+your first js piece of hardware.
 
 ---
 
@@ -218,166 +248,6 @@ security and encryption.
 
 Finally the web page for the client gives as input methods, a data viz layer
 as well as user interface.
-
-Let's build something using this now.
-
----
-
-### Hardware hello world
-<!-- .slide: data-background="/images/hello_world.jpg" -->
-
-(CC) Flickr <!-- .element: class="attribution" -->
-[Daniel Novta](http://www.flickr.com/photos/vanf/5210360116)
-
-Notes:
-So we plug in an LED (this one is bigger than normal so you can see it
-easily) and then we’ll need to write some code.
-
----
-
-### Hello world code
-
-```
-var firmata = require('firmata');
-if (process.argv[2] == null) {
-    console.log("You need to supply a device to connect to");
-    process.exit()
-}
-
-var board = new firmata.Board(process.argv[2], function(err) {
-
-    console.log('connected');
-
-    board.pinMode(10, board.OUTPUT);
-    var state = false;
-    setInterval(function() {
-        state = ! state;
-        board.digitalWrite(10, state);
-    }, 1000);
-});
-```
-
-Notes:
-// Go interactive version here to show connecting and turning an LED on and
-// off.
-
-This is a pretty simple script. It sets up a connection to a board then sets 
-pin 10 to be an OUTPUT. After that there's a timer which simply changes the
-pin 10 to be 1 or 0 or in electronics terms, high or low.
-
-That is the blink tag in JavaScript on hardware.
-
----
-
-
-### Web thing hello world
-
-```
-var firmata = require("firmata");
-
-if (process.argv[2] == null) {
-    console.log("Please supply a device to connect to");
-    process.exit();
-}
-
-// web server elements
-var express = require('express');
-var app = express();
-var http = require('http');
-var server = http.createServer(app);
-var board;
-
-// Set up the application server
-
-app.configure(function() {
-    app.set('port', 8001);
-    app.use(app.router);
-    app.use(express.static(__dirname + '/public'));
-});
-
-server.listen(app.get('port'));
-
-// Set up Socket IO
-var io = require('socket.io').listen(server);
-io.set('log level', 1);
-
-app.get('/', function(request, response) {
-    response.sendfile(__dirname + '/public/index.html');
-});
-
-io.sockets.on("connection", function(socket) {
-
-    if (board.ready) {
-        socket.emit("connect_ack", {
-            msg: "Welcome Control", 
-            state: "ONLINE"
-        });
-    } else {
-        socket.emit("connect_ack", {
-            msg: "Welcome Control", 
-            state: "NOPINS"
-        });
-    }
-
-    socket.on("toggle", function(data) {
-        board.digitalWrite(pin, data.state);
-    });
-});
-
-// SET up the arduino and firmata
-var pin = 10; // led pin to turn on.
-board = new firmata.Board(process.argv[2], function(err) {
-    if (err){
-        console.log(err);
-        process.exit();
-    }
-    console.log("Control via your browser now");
-});
-
-```
-
-Notes:
-So we’re all web devs here so let’s not stray too far away from our comfort
-zone. Let’s wrap a web interface around this light so we can turn it on and
-off with a click of a button on a page.
-
-This is a bit of overkill but we’re going to use express and web sockets so
-it’s a bit more realtime.
-
-We set up the socket messages on the server to switch things on and off .
-On the client side all our HTML and JS is doing is just sending messages on
-click so nothing too interesting.
-
-And there we go - button click to turn a light on and off via a web browser.
-
----
-
-### Web thing hello world
-
-<iframe class="external" src="http://localhost:8001/"></iframe>
-
-github.com/ajfisher/nbscaffold
-
-Notes:
-The code you can get for this here
-
----
-
-### Easy install
-
-```
-# from command line post node install
-
-npm install firmata express socket.io
-```
-
-Notes:
-So this stack can be created with pretty much just this command plus an
-arduino with firmata on it in about 2 minutes and it's generally going to work.
-Yes, even on Windows.
-
-Now it’s pretty cool to be able to connect a web page to a bit of hardware
-right?
 
 ---
 
@@ -454,39 +324,132 @@ Like Robots.
 
 ---
 
-### Looking for droids?
-<!-- .slide: data-background="/images/droids.jpg" -->
+# Electronics Crash Course
+
+<!-- .slide: class="title" -->
+
+
+Notes:
+
+---
+
+### V=I.R (Ohms Law)
+
+![](/images/vir.png)
+
+(C)<!-- .element: class="attribution" -->
+[Sparkfun](https://sparkfun.com)
+
+Notes:
+
+---
+
+### Ohm's Law another way
+
+![](/images/ohm2.jpg)
+
+Notes:
+
+---
+
+### Hardware hello world
+<!-- .slide: data-background="/images/hello_world.jpg" -->
 
 (CC) Flickr <!-- .element: class="attribution" -->
-[⣫⣤⣇⣤](http://www.flickr.com/photos/donsolo/3768623542/)
+[Daniel Novta](http://www.flickr.com/photos/vanf/5210360116)
 
 Notes:
-So let’s look at a robot that is built with web tech.
+So we plug in an LED (this one is bigger than normal so you can see it
+easily) and then we’ll need to write some code.
 
 ---
 
-### NoDLE
+### Using a breadboard
 
-<iframe class="nodle" src="http://192.168.40.1:8000/"></iframe>
-
-github.com/ajfisher/ajnodebot
+![](/images/breadboard.jpg)
 
 Notes:
-
-This is an ongoing NodeBot project called NoDLE. It uses a Raspberry Pi for 
-running node, an arduino to control motors and servos, it can capture and
-process video and it can tell its distance. 
-
-And this is all just built with web tech.
+This is a breadboard. We use them to prototype circuits so we don't have to solder
+You can see here the way the lines are connected.
 
 ---
 
+### node-ardx.org
+
+
+Notes:
+This is an awesome resource that shows you how to apply the various components
+in this kit and shows you how to use them in JS.
+
+For the moment we're just going to focus on the getting started one right now.
+
+(Switch to NodeARDX site).
+
+---
+
+### Base install
+
+```
+# from command line post node install
+
+npm install johnny-five
+```
+
+Notes:
+This is the main package that we're going to be using.
+If you look in node_modules/johnny-five you'll see a folder called
+docs and a folder called eg. Each component is broken out specifically 
+so you can see how it works and the api for it as well. Also
+checkout johnny-five.io for more documentation.
+
+From wherever you installed johnny-five, create a file called blink.js
+and then write this code.
+
+---
+
+### Hello world code
+
+```
+var five = require('johnny-five');
+
+var board = new five.Board();
+
+board.on("ready", function() {
+    console.log('connected');
+
+    var led = new five.Led(10);
+    setInterval(function() {
+        led.toggle();
+    }, 1000);
+});
+board.on("error", function(err) {
+    console.log(err);
+});
+```
+
+Notes:
+// Go interactive version here to show connecting and turning an LED on and
+// off.
+
+---
+
+## Equipment
+
+* ARDX Kits
+* LEDs & NeoPixels
+* Light sensors
+* Servos 180 and 360
+* Buttons
+* Ultrasonic sensors
+
+---
 
 ## Resources
 
+* node-ardx.org
+* johnny-five.io
 * github.com/nodebotsau/simplebot
 * ajf.io/buildingdroids
-* github.com/rwaldron/johnny-five
 * nodebotsau.io
 
 Notes: 
@@ -495,19 +458,3 @@ If you want to play with this stuff, here's some resources you can have a look
 at to go further. We also run events at Hack Melbourne every month on the first
 Wednesday as well as bigger events through the year.
 
----
-
-# Building Droids with JavaScript
-
-<!-- .slide: class="title" -->
-
-Decompress, March 28, 2015 <!-- .element: class="location" -->
-
-Andrew Fisher @ajfisher (ajf.io/buildingdroids) <!-- .element: class="author" -->
-
-Notes:
-
-So today I've set up a space that you can come and play in. We have 
-various bots and if you want to build one you can. There's some kits if you want
-to take one with you and if we get enough interest, maybe we'll do a sumo bot
-battle at the end of the day.
