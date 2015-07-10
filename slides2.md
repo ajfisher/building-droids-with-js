@@ -94,10 +94,6 @@ place is in the browser? Right?
 
 Lets see how some of it's features make JS and hardware really powerful together.
 
-JavaScript has struggled to make the transition from a quirky language that
-people think is just used to validate forms or make links change colour when
-you roll over them. 
-
 --- 
 
 ### JavaScript is too dynamic to be precise...
@@ -203,10 +199,7 @@ card and then handle it. We can do the same thing in C but we write a lot of
 code, have to use interrupt handlers and make sure we suspend the system state
 properly or our door will crash.
 
-JS is designed to just work with this sort of behaviour. Got a robot that 
-has a distance sensor on it? Events will come in when the distance changes.
-If it gets below say 10cm then emit your own event saying "Obstacle" and any
-listener can now do something with that. 
+JS is designed to just work with this sort of behaviour.
 
 ---
 
@@ -634,6 +627,64 @@ They have many features, including motors, sensors and can use bluetooth and wif
 ---
 
 ### mBot drive code
+
+```
+var five = require("johnny-five");
+
+var max_speed_l = 150;
+var max_speed_r = 140;
+
+// set up the input
+var stdin = process.openStdin();
+require('tty').setRawMode(true);
+
+var board = new five.Board({port: process.argv[2]});
+
+var l_motor = r_motor = null;
+
+board.on("ready", function(err) {
+
+    if (err){
+        console.log(err);
+        return;
+    }
+    l_motor = new five.Motor({pins: {pwm: 6, dir: 7}});
+    r_motor = new five.Motor({pins: {pwm: 5, dir: 4}});
+
+    console.info("Board connected. Robot set up. LRUD to control");
+
+});
+
+stdin.on('keypress', function(chunk, key) {
+	// process the keypresses
+
+	if (key) {
+		switch (key.name) {
+			case "up":
+                l_motor.reverse(max_speed_l);
+                r_motor.forward(max_speed_r);
+				break;
+			case "down":
+                r_motor.reverse(max_speed_r);
+                l_motor.forward(max_speed_l);
+				break;
+			case "left":
+                l_motor.forward(max_speed_l);
+                r_motor.forward(max_speed_r);
+				break;
+			case "right":
+                r_motor.reverse(max_speed_r);
+                l_motor.reverse(max_speed_l);
+				break;
+			case "space":
+                l_motor.stop();
+                r_motor.stop();
+				break;
+		}
+	}
+});
+
+```
 
 Notes:
 
