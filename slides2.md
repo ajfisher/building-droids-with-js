@@ -32,7 +32,7 @@ a result, I moved to software. As you’d expect, in the world of software, the
 effort to reward ratio was far better than for hardware, especially for the
 attention span of a teenager.
 
-And this situation remained the case until the early recently.
+And this situation remained the case until recently.
 
 ---
 
@@ -48,8 +48,7 @@ hardware is thought of. Hardware was no longer expensive - these were
 designed at the time to be less than 20 euros and the designs were open
 sourced, meaning anyone could make them. Today you can get them for
 $5. Sophisticated hardware became accessible to students, artists, kids and
-web people with little repercussion for blowing one up. With it, this
-community has brought ideas around design, user experience, art and
+web people. With it, this community has brought ideas around design, user experience, art and
 software and architectural principles. 
 
 More recently, over the last few years, some great work has been done in the
@@ -81,6 +80,11 @@ Then we’ll play with finish with some examples.
 
 
 ## Why use javascript for robotics?
+<!-- .slide: data-background="/images/robot_johngreenaway.jpg" -->
+
+
+(CC) Flickr <!-- .element: class="attribution" -->
+[JohnGreenaway](https://www.flickr.com/photos/johngreenaway/3356358479/)
 
 Notes:
 
@@ -98,12 +102,8 @@ you roll over them.
 
 ### JavaScript is too dynamic to be precise...
 
-What if the Mars Curiosity was programmed with JavaScript, huh?
-
-I’ll tell you what would’ve happened. It would’ve crashed into Venus spitting 
-out NaN errors.
-
-— Glenn Siegman (@gsiegman) August 15, 2013
+![](/images/mars1.png)<br/>
+![](/images/mars2.png)
 
 Notes:
 
@@ -122,7 +122,8 @@ languages have caused significant security and software bugs over the years.
 
 ### Real hardware engineers use C...
 
-Pic of the tessel and micropython thing
+![](images/tessel.jpg)
+![](images/micro-python.jpg)
 
 Notes:
 
@@ -130,10 +131,6 @@ Given how long C has ruled the hardware world, there is a major bias in that
 all hardware must use C. This is still mostly the case - especially with older
 or cheaper chips. However the next generation of medium cost chips are more or
 less here now that can run python and JavaScript natively.
-
-Recall that people used to say that C was too difficult to run on chips and it
-all had to be done in machine code. Computing power increases and each time it
-does we use high level abstractions and languages to program them.
 
 Let me ask a question:
 
@@ -147,8 +144,7 @@ awful web interfaces known to man.
 ---
 
 ### Web apps designed by hardware engineers
-
-Pic of some router or a printer app etc.
+<!-- .slide: data-background="/images/router.jpg" -->
 
 Notes:
 
@@ -157,7 +153,11 @@ This is recent as well - it came off my router at home.
 
 ---
 
-### So why use JS for robotics then?
+### Why use JS and hardware?
+<!-- .slide: data-background="/images/atmega.jpg" -->
+
+(CC) Flickr <!-- .element: class="attribution" -->
+[Oskay](http://www.flickr.com/photos/oskay/2310115216/)
 
 Notes:
 
@@ -167,12 +167,14 @@ level language.
 
 For me it really comes down to two things:
 
-JavaScript's inherent event handling
-JavaScript's dynamic object prototyping
+* JavaScript's inherent event handling
+* JavaScript's dynamic object prototyping
 
 ---
 
 ### EventEmitter
+
+![](images/nodebotanist_tweet.png)
 
 Notes:
 
@@ -185,6 +187,10 @@ different parts of your application to talk to each other.
 ---
 
 ### The real world is all events
+<!-- .slide: data-background="/images/door.jpg" -->
+
+(CC) Flickr <!-- .element: class="attribution" -->
+[txmx 2](https://www.flickr.com/photos/txmx-2/8535263071)
 
 Notes:
 
@@ -213,7 +219,7 @@ motor.start();
 
 Notes:
 
-We're all familir with the way JS handles objects. And I'll show you more
+We're all familiar with the way JS handles objects. And I'll show you more
 of this in a moment but the hardware framework we use allows us to consider
 hardware as objects as well such as the case of this motor. Really I don't 
 want to care about the underlying detail of how different types of motors work 
@@ -247,6 +253,10 @@ as fast when you call start.
 ---
 
 ### JS <3 Robotics
+<!-- .slide: data-background="/images/robot_love.jpg" -->
+
+(CC) Flickr <!-- .element: class="attribution" -->
+[hiperbolica](https://www.flickr.com/photos/hiperbolica/3414999010)
 
 Notes:
 
@@ -258,7 +268,7 @@ Let's move on to what the hardware stack looks like.
 
 ## The NodeBots stack
 
-NodeBots Logo
+![](/images/logo.png)
 
 Notes:
 
@@ -271,20 +281,22 @@ connections and then wrapped around that is a framework called Johnny Five.
 ---
 
 ## Johnny Five
+<!-- .slide: data-background="/images/rick.jpg" -->
 
-Rick picture
+(C)<!-- .element: class="attribution" -->
+[Joanne Daudier](https://twitter.com/jdaudier)
 
 Notes:
-
-Johnny Five is a hardware abstraction framework so instead of writing code that
-is specific to a chip you can talk about components that behave in different
-ways and leave the implementation details up to the people who write the 
-board level interfaces whereupon you can then use it.
 
 Johnny Five was started by this guy - Rick Waldron, and there are now about
 30 core project members, nearly 100 contributors and over 2000
 commits to the codebase in the last couple of years. It's a very active and
 expanding project and we're always looking for more contributors to help out.
+
+Johnny Five is a hardware abstraction framework so instead of writing code that
+is specific to a chip you can talk about components that behave in different
+ways and leave the implementation details up to the people who write the 
+board level interfaces whereupon you can then use it.
 
 ---
 
@@ -307,11 +319,8 @@ put some firmware on them to do what we want.
 
 This talks via a communications protocol to what is called an IO Plugin. IO
 plugins are a Johnny Five idea that tries to get hardware to behave in consistent
-ways via a protocol. Think of this sort of like HTTP requests and responses - 
-it doesn't really matter WHAT the server does once it gets the request but
-so long as it returns a response that is HTTP then the client doesn't care. IO
-plugins do that for hardware - turn a pin on, turn it off, take a sensor reading,
-move a servo - these are all defined as part of the IO plugin protocol.
+ways via a protocol. Think of this sort of like HTTP requests and responses - the
+client doesn't really care what the server does as long as it responds properly.
 
 Johnny Five gives us hardware abstraction so we can turn motors and LEDs into 
 JavaScript objects and interact with them. As a side effect we get all of NodeJS
@@ -381,6 +390,11 @@ and you are then writing code.
 ---
 
 ## Examples and applications
+<!-- .slide: data-background="/images/np_glasses.jpg" -->
+
+Glasses (C)<!-- .element: class="attribution" -->
+[Andy Gelme](https://twitter.com/geekscape) | 
+Image (CC) [Matthew Bergman](7215764961901652://www.flickr.com/photos/matthewbergman/15337663413/)
 
 Notes:
 
@@ -391,6 +405,10 @@ as well.
 ---
 
 ### SimpleBot
+<!-- .slide: data-background="/images/simplebot.jpg" -->
+
+Simplebot (CC)<!-- .element: class="attribution" -->
+[AJ Fisher](https://twitter.com/ajfisher) 
 
 Notes:
 
@@ -400,11 +418,16 @@ is very cheap and fast to build so good for beginners.
 
 ---
 
-### Node Dress
+### Node Skirt
+<!-- .slide: data-background="/images/skirt.jpg" -->
+
+Skirt (C)<!-- .element: class="attribution" -->
+[Kassandra Perch](https://twitter.com/nodebotanist) | 
+Image (CC) [Matthew Bergman](https://www.flickr.com/photos/matthewbergman/15969524882/in/set-72157649619016521)
 
 Notes:
 
-This dress, made by Kassandra Perch is fully contained running javascript on a little board embedded into
+This skirt, made by Kassandra Perch is fully contained running javascript on a little board embedded into
 it. It has an accelerometer and as you move around the LEDs inside it light up
 different colour. So you can even use JavaScript in your clothing!!
 
@@ -412,6 +435,10 @@ different colour. So you can even use JavaScript in your clothing!!
 ---
 
 ### Tetris
+<!-- .slide: data-background="/images/tetris.gif" -->
+
+(C)<!-- .element: class="attribution" -->
+[Adrian Catalan](https://twitter.com/ykro)
 
 Notes:
 
@@ -422,6 +449,10 @@ LED panels.
 ---
 
 ### Tharp
+<!-- .slide: data-background="/images/tharp.gif" -->
+
+(OSC)  <!-- .element: class="attribution" -->
+[dtex](https://github.com/dtex/tharp)
 
 Notes:
 
@@ -433,6 +464,10 @@ responds very very fast to his movement.
 ---
 
 ### Hello World
+<!-- .slide: data-background="/images/hello_world.jpg" -->
+
+(CC) Flickr <!-- .element: class="attribution" -->
+[Daniel Novta](http://www.flickr.com/photos/vanf/5210360116)
 
 Notes:
 
@@ -444,6 +479,9 @@ an LED to blink on and off.
 
 ### Circuit
 
+![](/images/LED.png)
+
+
 Notes:
 
 We will use an arduino and we're just going to plug an LED into this pin 10 here.
@@ -453,6 +491,26 @@ Five to control it all.
 ---
 
 ### Hardware hello world
+
+```
+var firmata = require('firmata');
+if (process.argv[2] == null) {
+    console.log("You need to supply a device to connect to");
+    process.exit()
+}
+
+var board = new firmata.Board(process.argv[2], function(err) {
+
+    console.log('connected');
+
+    board.pinMode(10, board.OUTPUT);
+    var state = false;
+    setInterval(function() {
+        state = ! state;
+        board.digitalWrite(10, state);
+    }, 1000);
+});
+```
 
 Notes:
 
@@ -469,6 +527,70 @@ Easy right - that is like the blink tag in hardware!!
 
 ### Web page LED
 
+```
+var firmata = require("firmata");
+
+if (process.argv[2] == null) {
+    console.log("Please supply a device to connect to");
+    process.exit();
+}
+
+// web server elements
+var express = require('express');
+var app = express();
+var http = require('http');
+var server = http.createServer(app);
+var board;
+
+// Set up the application server
+
+app.configure(function() {
+    app.set('port', 8001);
+    app.use(app.router);
+    app.use(express.static(__dirname + '/public'));
+});
+
+server.listen(app.get('port'));
+
+// Set up Socket IO
+var io = require('socket.io').listen(server);
+io.set('log level', 1);
+
+app.get('/', function(request, response) {
+    response.sendfile(__dirname + '/public/index.html');
+});
+
+io.sockets.on("connection", function(socket) {
+
+    if (board.ready) {
+        socket.emit("connect_ack", {
+            msg: "Welcome Control", 
+            state: "ONLINE"
+        });
+    } else {
+        socket.emit("connect_ack", {
+            msg: "Welcome Control", 
+            state: "NOPINS"
+        });
+    }
+
+    socket.on("toggle", function(data) {
+        board.digitalWrite(pin, data.state);
+    });
+});
+
+// SET up the arduino and firmata
+var pin = 10; // led pin to turn on.
+board = new firmata.Board(process.argv[2], function(err) {
+    if (err){
+        console.log(err);
+        process.exit();
+    }
+    console.log("Control via your browser now");
+});
+
+```
+
 Notes:
 
 So that's great but what about if you want something connected to the browser?
@@ -484,6 +606,8 @@ make it respond to a message.
 
 ### Web connected light
 
+<iframe class="external" src="http://localhost:8001/"></iframe>
+
 Notes:
 
 So here it is working - as I click the button the LED turns on and off. All with
@@ -492,6 +616,10 @@ JavaScript and a little bit of hardware.
 ---
 
 ### mBot
+<!-- .slide: data-background="/images/mbot.jpg" -->
+
+(CC) <!-- .element: class="attribution" -->
+[AJ Fisher](http://twitter.com/ajfisher)
 
 Notes:
 
@@ -516,7 +644,11 @@ Let's see this drive. Hopefully this will work.
 
 ---
 
-## Outro (better title)
+## Look for droids
+<!-- .slide: data-background="/images/droids.jpg" -->
+
+(CC) Flickr <!-- .element: class="attribution" -->
+[⣫⣤⣇⣤](http://www.flickr.com/photos/donsolo/3768623542/)
 
 Notes:
 
@@ -545,7 +677,7 @@ If you want to participate then you'll need these things up on the screen.
 
 ## International NodeBots Day
 
-nodebotsday.com
+nodebotsday.com <!-- .element: class="bigtext" -->
 
 Notes:
 
