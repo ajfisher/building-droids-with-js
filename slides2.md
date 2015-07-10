@@ -3,7 +3,7 @@
 
 <!-- .slide: class="title" -->
 
-Decompress, March 28, 2015 <!-- .element: class="location" -->
+JSConf China, July 11, 2015 <!-- .element: class="location" -->
 
 Andrew Fisher @ajfisher <!-- .element: class="author" -->
 
@@ -290,15 +290,11 @@ expanding project and we're always looking for more contributors to help out.
 
 ### The stack
 
-Controller board (sensors and actuators)
-
-IO Plugin (communications protocol)
-
-Johnny Five / NodeJS (application logic)
-
-WS/HTTP (networking and security protocols)
-
-Clients (UI, input, visualisation)
+* Controller board (sensors and actuators)
+* IO Plugin (communications protocol)
+* Johnny Five / NodeJS (application logic)
+* WS/HTTP (networking and security protocols)
+* Clients (UI, input, visualisation)
 
 Notes:
 
@@ -327,15 +323,11 @@ like UI, input and what not.
 
 ### A basic stack
 
-Controller board (Arduino)
-
-IO Plugin (Firmata over USB)
-
-Johnny Five / NodeJS (application logic)
-
-WS/HTTP (networking and security protocols)
-
-Clients (UI, input, visualisation)
+* Controller board (Arduino)
+* IO Plugin (Firmata over USB)
+* Johnny Five / NodeJS (application logic)
+* WS/HTTP (networking and security protocols)
+* Clients (UI, input, visualisation)
 
 Notes:
 
@@ -534,17 +526,68 @@ because real life events make coding a bit more interesting.
 
 --- 
 
+## NodeBots tonight
+
+* Arduino IDE - arduino.cc
+* NodeJS installed
+* npm install johnny-five
+* github.com/jsconfcn/nodebots-session
+
+Notes:
+
+Tonight we will be doing a nodebots workshop using the mBots for teams of a few
+people to work together to make the robots and maybe have a sumo fight competition
+to see who the best JS robotics team is here.
+
+If you want to participate then you'll need these things up on the screen.
+
+--- 
+
+## International NodeBots Day
+
+nodebotsday.com
+
+Notes:
+
+On July 25 there is a day of NodeBots all around the world. Over 30 cities are
+taking part with over a thousand JS developers all building robots and web
+hardware on the day. 
+
+If you want to take part, then organise a group, go to this site and you can
+find out more information. Or come talk to me as I am coordinating Australia 
+and Sri Lanka events.
+
+--- 
+
 
 ## Resources
 
-Notes:
-
---- 
-
-
-## Prep for evening
+* johnny-five.org
+* gitter.im/rwaldron/johnny-five
+* node-ardx.org
+* Make JS Robotics book (BOOKJSROBOTICS for discount)
 
 Notes:
 
+Finally, here are some resources to get more information and if you want to get
+a book on all of this, there is a code there to get a discount. This was
+written by the core NodeBots group and has lots of fun projects in it for you
+to build.
 
---- 
+---
+
+# Droids, JavaScript and Web Connected Hardware
+
+<!-- .slide: class="title" -->
+
+JSConf China, July 11, 2015 <!-- .element: class="location" -->
+
+Andrew Fisher @ajfisher <!-- .element: class="author" -->
+
+Notes:
+
+So hopefully that gives you a good view of why you would use JS, what the stack
+looks like and also some inspiration for things you can do with it.
+
+thank you very much and please come talk to me if you want to find out any more
+
