@@ -493,22 +493,20 @@ Five to control it all.
 ### Hardware hello world
 
 ```
-var firmata = require('firmata');
+var five = require("johnny-five");
+
 if (process.argv[2] == null) {
     console.log("You need to supply a device to connect to");
     process.exit()
 }
 
-var board = new firmata.Board(process.argv[2], function(err) {
+var board = five.Board({port: process.argv[2]});
 
-    console.log('connected');
+board.on("ready", function() {
 
-    board.pinMode(10, board.OUTPUT);
-    var state = false;
-    setInterval(function() {
-        state = ! state;
-        board.digitalWrite(10, state);
-    }, 1000);
+    var led = new five.Led(10);
+    led.blink(500);
+
 });
 ```
 
@@ -528,7 +526,7 @@ Easy right - that is like the blink tag in hardware!!
 ### Web page LED
 
 ```
-var firmata = require("firmata");
+var five = require("johnny-five");
 
 if (process.argv[2] == null) {
     console.log("Please supply a device to connect to");
@@ -542,7 +540,10 @@ var http = require('http');
 var server = http.createServer(app);
 var board;
 
+//
+//
 // Set up the application server
+//
 
 app.configure(function() {
     app.set('port', 8001);
@@ -552,9 +553,12 @@ app.configure(function() {
 
 server.listen(app.get('port'));
 
+
 // Set up Socket IO
 var io = require('socket.io').listen(server);
 io.set('log level', 1);
+
+console.log("MESSAGE: Web server now listening");
 
 app.get('/', function(request, response) {
     response.sendfile(__dirname + '/public/index.html');
@@ -563,32 +567,30 @@ app.get('/', function(request, response) {
 io.sockets.on("connection", function(socket) {
 
     if (board.ready) {
-        socket.emit("connect_ack", {
-            msg: "Welcome Control", 
-            state: "ONLINE"
-        });
+        socket.emit("connect_ack", {msg: "Welcome Control", state: "ONLINE"});
     } else {
-        socket.emit("connect_ack", {
-            msg: "Welcome Control", 
-            state: "NOPINS"
-        });
+        socket.emit("connect_ack", {msg: "Welcome Control", state: "NOPINS"});
     }
 
     socket.on("toggle", function(data) {
+        // use the control mech to switch the LED on or off
         board.digitalWrite(pin, data.state);
     });
+
+
 });
 
 // SET up the arduino and firmata
+
 var pin = 10; // led pin to turn on.
-board = new firmata.Board(process.argv[2], function(err) {
+board = new five.Board(process.argv[2], function(err) {
     if (err){
         console.log(err);
         process.exit();
     }
     console.log("Control via your browser now");
-});
 
+});
 ```
 
 Notes:
