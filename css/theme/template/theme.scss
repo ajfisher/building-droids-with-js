@@ -320,6 +320,12 @@ body {
     left: 0em;
 }
 
+.reveal p.bigtext {
+    font-size: 2.5em;
+    margin-top: 1em;
+    margin-left: 0.4em;
+}
+
 .reveal ol, 
 .reveal ul {
     display: block;
@@ -365,6 +371,7 @@ body {
 .reveal aside.notes {
     display: none !important;
 }
+
 
 .reveal pre code {
     padding: 1em 0.5em;
