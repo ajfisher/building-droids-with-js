@@ -730,6 +730,8 @@ If you want to participate then you'll need these things up on the screen.
 
 ## International NodeBots Day
 
+July 25, 2015 <!-- .element: class="bigtext" -->
+
 nodebotsday.com <!-- .element: class="bigtext" -->
 
 Notes:
@@ -750,7 +752,7 @@ and Sri Lanka events.
 * johnny-five.org
 * gitter.im/rwaldron/johnny-five
 * node-ardx.org
-* Make JS Robotics book (BOOKJSROBOTICS for discount)
+* Make JS Robotics book (BOOKJSROBOTICS at MakerShed)
 
 Notes:
 

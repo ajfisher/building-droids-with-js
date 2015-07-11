@@ -1,7 +1,7 @@
 var five = require("johnny-five");
 
-var max_speed_l = 150;
-var max_speed_r = 140;
+var max_speed_l = 200;
+var max_speed_r = 190;
 
 // set up the input
 var stdin = process.openStdin();
