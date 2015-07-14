@@ -7,6 +7,8 @@ JSConf China, July 11, 2015 <!-- .element: class="location" -->
 
 Andrew Fisher @ajfisher <!-- .element: class="author" -->
 
+Press 'S' for full speaker notes. <!-- .element: class="instruction" --> 
+
 Notes:
 Hi! My name is Andrew Fisher and I’m an interaction researcher. Today I
 want to talk to you about Droids, JavaScript and Web Connected hardware for 
@@ -172,6 +174,9 @@ For me it really comes down to two things:
 
 ![](images/nodebotanist_tweet.png)
 
+Twitter: <!-- .element: class="attribution" -->
+[@nodebotanist](http://twitter.com/nodebotanist)
+
 Notes:
 
 JavaScript has incredible event handling. We tend to take this for granted, but
@@ -323,7 +328,7 @@ like UI, input and what not.
 
 ---
 
-### A basic stack
+### Common implementation
 
 * Controller board (Arduino)
 * IO Plugin (Firmata over USB)
@@ -472,7 +477,7 @@ an LED to blink on and off.
 
 ### Circuit
 
-![](/images/LED.png)
+![Simple LED circuit](/images/LED.png)
 
 
 Notes:
@@ -509,6 +514,17 @@ So here's the code to make this work. You can see here that I have the board
 connect and then when it is ready the callback fires and I have a simple call to
 blink every 500ms. This is a convenience method which just sets a timer interval
 and then calls it.
+
+
+---
+
+### Demonstration
+<!-- .slide: data-background="/images/blink.gif" -->
+
+Image of live demonstration. Code: <!-- .element: class="attribution" -->
+[ led.js](/code/led.js)
+
+Notes:
 
 So let's see that work. Switch to code.
 
@@ -600,8 +616,12 @@ make it respond to a message.
 ---
 
 ### Web connected light
+<!-- .slide: data-background="/images/webled.gif" -->
 
-<iframe class="external" src="http://localhost:8001/"></iframe>
+<!-- <iframe class="external" src="http://localhost:8001/"></iframe>-->
+
+Image of live demonstration. Code: <!-- .element: class="attribution" -->
+[ webled.js](/code/led.js)
 
 Notes:
 
@@ -612,6 +632,8 @@ JavaScript and a little bit of hardware.
 
 ### mBot
 <!-- .slide: data-background="/images/mbot.jpg" -->
+
+CHANGE THIS IMAGE
 
 (CC) <!-- .element: class="attribution" -->
 [AJ Fisher](http://twitter.com/ajfisher)
@@ -693,7 +715,20 @@ presses of a keyboard to then say to drive forwards, backwards, left and right
 and turns the motors on and off in the right combinations to do this. Even
 though there is some code it is very simple. 
 
+
+---
+
+### Demonstration
+<!-- .slide: data-background="/images/mbot.gif" -->
+
+Image of alternative demonstration. Code: <!-- .element: class="attribution" -->
+[mbot.js](/code/led.js)
+
+Notes:
+
 Let's see this drive. Hopefully this will work.
+
+So this is just running over bluetooth and is controlled from javascript.
 
 ---
 

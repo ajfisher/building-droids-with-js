@@ -326,6 +326,13 @@ body {
     margin-left: 0.4em;
 }
 
+.reveal p.instruction {
+    font-size: 0.5em;
+    color: lighten($textGrey, 50);
+    margin-top: 0;
+    margin-left: 1em;
+}
+
 .reveal ol, 
 .reveal ul {
     display: block;

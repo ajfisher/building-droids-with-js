@@ -273,6 +273,12 @@ body {
   margin-top: 1em;
   margin-left: 0.4em; }
 
+.reveal p.instruction {
+  font-size: 0.5em;
+  color: #bfbfbf;
+  margin-top: 0;
+  margin-left: 1em; }
+
 .reveal ol, .reveal ul {
   display: block;
   margin-left: 1.6em;
