@@ -519,7 +519,7 @@ and then calls it.
 ---
 
 ### Demonstration
-<!-- .slide: data-background="/images/blink.gif" -->
+<!-- .slide: data-background="/images/blinkled.gif" -->
 
 Image of live demonstration. Code: <!-- .element: class="attribution" -->
 [ led.js](/code/led.js)
@@ -632,8 +632,6 @@ JavaScript and a little bit of hardware.
 
 ### mBot
 <!-- .slide: data-background="/images/mbot.jpg" -->
-
-CHANGE THIS IMAGE
 
 (CC) <!-- .element: class="attribution" -->
 [AJ Fisher](http://twitter.com/ajfisher)
