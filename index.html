@@ -16,17 +16,18 @@
 
 		<link rel="stylesheet" href="css/reveal.css">
 		<link rel="stylesheet" href="css/theme/ajf.css" id="theme">
-
 		<!-- Code syntax highlighting -->
 		<link rel="stylesheet" href="lib/css/zenburn.css">
 
-		<!-- Printing and PDF exports -->
+		<!-- If the query includes 'print-pdf', include the PDF print sheet -->
 		<script>
-			var link = document.createElement( 'link' );
-			link.rel = 'stylesheet';
-			link.type = 'text/css';
-			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
-			document.getElementsByTagName( 'head' )[0].appendChild( link );
+			if( window.location.search.match( /print-pdf/gi ) ) {
+				var link = document.createElement( 'link' );
+				link.rel = 'stylesheet';
+				link.type = 'text/css';
+				link.href = 'css/print/pdf.css';
+				document.getElementsByTagName( 'head' )[0].appendChild( link );
+			}
 		</script>
 
 		<!--[if lt IE 9]>
@@ -38,11 +39,9 @@
 
 		<div class="reveal">
 
-			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
                 <section data-markdown="slides2.md"  
                          data-separator="^\n---"  
-                         data-separator-vertical="^\n--"  
                          data-separator-notes="^Notes:">
                 </section>
 			</div>
@@ -53,17 +52,25 @@
 		<script src="js/reveal.js"></script>
 
 		<script>
+			if( window.location.hostname.match( /ajf/gi ) ) {
+                document.getElementsByTagName("body")[0].className = "production";
+            }
+
+            if (navigator.userAgent.match(/chrome/gi)) {
+                //document.getElementsByTagName("body")[0].className += " chrome";
+            }
 
 			// Full list of configuration options available at:
 			// https://github.com/hakimel/reveal.js#configuration
 			Reveal.initialize({
-                width: 1366,
-                height: 768,
+                width: 1280,
+                height: 720,
 				controls: false,
 				progress: true,
 				history: true,
                 center: false,
                 overview: false,
+                hideAddressBar: true,
 
 				transition: 'fade', // none/fade/slide/convex/concave/zoom
                 transitionSpeed: 'fast',

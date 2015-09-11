@@ -9,29 +9,49 @@
 @import "../template/settings";
 // ---------------------------------------------
 
+// Overrides of settings
+
+$base: #F8DF1E;
+$highlight: #FFF076;
+$accent: #A09019;
+$complementary: #5522A9;
+
+
+$backgroundColor: rgb(63, 63, 63);
+$mainColor: rgba(255,255,255,0.85);
+$headingColor: #3f3f3f;
+$headingLineHeight: 0.9em;
+$headingLetterSpacing: 0.02em;
+$headingTextShadow: 0px 0px 6px rgba(0,0,0,0.2);
+
+$linkColor: $highlight;
+$linkColorHover: lighten( $linkColor, 20% );
+
+$heading1Size: 2.77em;
+$heading2Size: 2.0em;
+$heading3Size: 2.0em;
+$heading4Size: 1.00em;
+
+$printHeaderSize: 1.7em;
+
+// Text selection
+$selectionBackgroundColor: $base;
+$selectionColor: #fff;
+
 
 // Extra bits
-$primaryYellow: #F8DF1E;
-$midtoneYellow: #A09019;
-$darkYellow: #433C0A;
-$primaryRed: #FF5E99;
 $mainText: rgba(255,255,255,0.85);
-$headingBackgroundColor: $primaryYellow;
+$headingBackgroundColor: $base;
 $primaryGrey: rgb(63,63,63);
-$textGrey: #3f3f3f;
-$headingColor: $textGrey; 
-
-$linkColor: $primaryYellow;
-$highlightColor: $primaryYellow;
 
 // Include theme-specific fonts
 @font-face {
 	font-family: 'League Gothic';
-	src: url('../../lib/font/league-gothic/league-gothic.eot');
-	src: url('../../lib/font/league-gothic/league-gothic.eot?#iefix') format('embedded-opentype'),
-		 url('../../lib/font/league-gothic/league-gothic.woff') format('woff'),
-		 url('../../lib/font/league-gothic/league-gothic.ttf') format('truetype'),
-		 url('../../lib/font/league-gothic/league-gothic.svg#LeagueGothicRegular') format('svg');
+	src: url('../../../lib/font/league-gothic/league-gothic.eot');
+	src: url('../../../lib/font/league-gothic/league-gothic.eot?#iefix') format('embedded-opentype'),
+		 url('../../../lib/font/league-gothic/league-gothic.woff') format('woff'),
+		 url('../../../lib/font/league-gothic/league-gothic.ttf') format('truetype'),
+		 url('../../../lib/font/league-gothic/league-gothic.svg#LeagueGothicRegular') format('svg');
 
 	font-weight: normal;
 	font-style: normal;
@@ -41,6 +61,7 @@ $highlightColor: $primaryYellow;
 
 // Background generator
 @mixin bodyBackground() {
+	//@include radial-gradient( rgba(28,30,32,1), rgba(85,90,95,1) );
 	@include radial-gradient( darken($primaryGrey, 30%), $primaryGrey );
 }
 
@@ -49,4 +70,332 @@ $highlightColor: $primaryYellow;
 @import "../template/theme";
 // ---------------------------------------------
 
+// Theme overrides
 
+.reveal .slides {
+    text-align: left;
+}
+
+// headings
+.reveal h1,
+.reveal h2,
+.reveal h3,
+.reveal h4,
+.reveal h5,
+.reveal h6 {
+    background-color: $headingBackgroundColor;
+}
+
+.reveal h1 { 
+    font-size: $heading1Size; 
+    margin-top: 0.5em;
+    padding: 0.5em 0.3em;
+    display:inline-block; 
+    width: 67%; 
+    line-height: 1em; 
+    text-shadow: $heading1TextShadow;
+}
+.reveal h2 { font-size: $heading2Size;	padding: 0.3em; display: inline-block;}
+.reveal h3 { font-size: $heading3Size; padding: 0.3em;	display: inline-block;}
+.reveal h4 {font-size: $heading4Size; }
+
+.reveal section img {
+	border: 1px solid $mainColor;
+}
+
+// others
+.reveal p {
+	margin: $blockMargin 0;
+//	line-height: 0.8em;
+}
+
+.reveal .title p
+{
+    font-size: 1em; 
+    padding-left: 1em;
+    line-height: 0.9em;
+}
+
+.reveal .location { 
+    color: $base;
+}
+
+.reveal p.attribution{
+    background-color: rgba(63,63,63,0.8);
+    font-size: 0.5em;
+    display: inline-block;
+    padding: 0.3em;
+    margin-left: 1em;
+    position: absolute;
+    top: 38em;
+    height: 1.4em;
+    transform-style: preserve-3d;
+    left: 0em;
+}
+
+.reveal p.help {
+    color: lighten($backgroundColor, 30%);
+    font-size: 0.6em;
+    margin-left: 0.65em;
+}
+
+
+.reveal ol, 
+.reveal ul {
+    display: block;
+    margin-left: 1.6em;
+    margin-top: 3em;
+    list-style-type: none;
+}
+
+
+.reveal ol {
+    counter-reset: numbers;
+}
+
+.reveal ol li:before {
+    position: absolute;
+    margin-left: -1em;
+    content: counter(numbers);
+    counter-increment: numbers;
+    color: $base;
+    line-height: normal;
+}
+
+.reveal ul li:before {
+    position: absolute;
+    margin-left: -1em;
+    content: "⦿";
+    color: $base;
+    line-height: normal;
+}
+
+.reveal li {
+    margin-bottom: 0.2em;
+}
+
+.reveal blockquote {
+	width: 55%;
+	margin-top: 3em;
+    margin-left: auto;
+	padding: 1.5em;
+	background: rgba(255, 255, 255, 0.1);
+}
+
+.reveal pre code {
+    padding: 1em 0.5em;
+    max-height: 520px;
+    font-size: 1.3em;
+    line-height: 1.0em;
+}
+
+.reveal pre {
+    margin: 0.5em 0;
+}
+
+iframe.external {
+    display: block;
+    width: 100%;
+    margin-top:1em;
+}
+
+p.bigtext {
+    font-size: 2em;
+}
+
+.reveal .datatium {
+    border: 4px solid $mainColor;
+    display: block;
+    font-size: 5em;
+    margin: 0.4em auto;
+    padding: 0.5em;
+    width: 18%;
+}
+
+/** Chart themes **/
+
+.timedevice {
+    display: block;
+    margin-left: 0.3em;
+}
+
+.chart text {
+    fill: $mainColor; //darken($mainColor, 90%);
+    font: 0.8em "League Gothic";
+    text-anchor: end;
+}
+
+.tick text {
+    font-size: 0.5em;
+}
+
+.conversions {
+    margin-top: 2em;
+}
+
+.conversions text {
+    font-size: 1.2em;
+    text-anchor: end;
+}
+
+.conversions text.marks {
+    text-anchor: start;
+}
+
+.chart text.series_title {
+    font-size: 1.0em;
+    text-anchor: middle;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: $mainColor;
+  shape-rendering: crispEdges;
+}
+
+line.axis {
+    stroke: $mainColor;
+    shape-rendering: crispEdges;
+    stroke-width: 1.5px;
+}
+
+.future path.line,
+.future .chart text,
+.future .chart text.cat_title,
+.future .axis line,
+.future .axis path,
+.future line.axis {
+    opacity: 0;
+}
+
+.present .axis path {
+    opacity: 1;
+    transition: opacity 1s ease 0.25s;
+}
+
+.present .axis line,
+.present line.axis {
+    opacity: 1;
+    transition: opacity 1s ease 0.75s;
+}
+
+.present .chart .tick text {
+    opacity: 1;
+    transition: opacity 2s ease 1.5s;
+}
+.present path.line.mobile {
+    opacity: 1;
+    transition: opacity 3s ease 2s;
+}
+
+.present path.line.desktop {
+    opacity: 1;
+    transition: opacity 3s ease 1s;
+}
+
+.present path.line.tablet {
+    opacity: 1;
+    transition: opacity 2s ease 3s;
+}
+.present .chart text.series_title {
+    opacity: 1;
+    transition: opacity 1.5s ease 4s;
+}
+
+.future .chart * rect {
+    width: 0;
+}
+
+.present .chart * rect.desktop {
+    transition: width 2s ease 1s;
+}
+.present .chart * rect.mobile {
+    transition: width 1s ease 1.5s;
+}
+.present .chart * rect.tablet {
+    transition: width 1.5s ease 0.75s;
+}
+
+.present .chart text.cat_title {
+    transition: opacity 1.5s ease 2s;
+}
+
+path.line {
+  fill: none;
+  stroke-width: 2px;
+}
+
+.line.desktop {
+    stroke: $base;
+}
+
+rect.desktop {
+    fill: $base;
+}
+
+.line.mobile {
+    stroke: $highlight; //darken($primaryRed, 20%);
+}
+
+rect.mobile {
+    fill: $highlight;
+}
+
+.line.tablet {
+    stroke: $accent; //darken($primaryRed, 40%);
+}
+
+rect.tablet {
+    fill: $accent;
+}
+
+.reveal .download {
+    font-size: 0.5em;
+}
+
+// PRINT styles
+body.print-pdf .reveal a.download {
+    display: none;
+}
+
+body.print-pdf .reveal aside.notes,
+body.production .reveal aside.notes {
+    /* display: none; */
+    display: block !important;
+    position: absolute;
+    right: 0;
+    top: 0;
+    max-width: 12em;
+    font-size: 0.35em;
+    background-color: rgba(64,64,64,0.6);
+    padding: 0.5em 1em;
+}
+
+body.production .reveal aside.notes {
+    top: 1.4em;
+}
+
+
+body.print-pdf h3,
+body.production h3{
+    font-size: $printHeaderSize;
+}
+
+body.print-pdf h2,
+body.production h2 {
+    font-size: $printHeaderSize;
+}
+
+// Weirdness to make it work in safari etc
+// make this work by default.
+.reveal .slides>section {
+	left: 0%;
+	top: 0%;
+}
+
+//now fix it for chrome
+body.chrome .reveal .slides>section{
+    left: -50%;
+    top: -50%;
+}
