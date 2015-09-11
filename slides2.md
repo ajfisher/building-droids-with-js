@@ -3,11 +3,9 @@
 
 <!-- .slide: class="title" -->
 
-JSConf China, July 11, 2015 <!-- .element: class="location" -->
+JSFoo India, September 19, 2015 <!-- .element: class="location" -->
 
 Andrew Fisher @ajfisher <!-- .element: class="author" -->
-
-Press 'S' for full speaker notes. <!-- .element: class="instruction" --> 
 
 Notes:
 Hi! My name is Andrew Fisher and I’m an interaction researcher. Today I
@@ -70,13 +68,13 @@ the community has done along the way..
 3. Applications and examples
 
 Notes:
-So to do this, we’ll consider:
+So to do this, we'll consider:
 
 Why javascript and why would we do this in JS
 
 We'll then look at the hardware stack and show some code 
 
-Then we’ll play with finish with some examples.
+Then we'll play finish with some examples.
 
 ---
 
@@ -519,9 +517,11 @@ and then calls it.
 ---
 
 ### Demonstration
-<!-- .slide: data-background="/images/blinkled.gif" -->
+<!-- slide: data-background="/images/blinkled.gif" -->
 
-Image of live demonstration. Code: <!-- .element: class="attribution" -->
+<!-- Image of live demonstration. -->
+
+Code: <!-- .element: class="attribution" -->
 [ led.js](/code/led.js)
 
 Notes:
@@ -616,11 +616,12 @@ make it respond to a message.
 ---
 
 ### Web connected light
-<!-- .slide: data-background="/images/webled.gif" -->
+<!-- slide: data-background="/images/webled.gif" -->
 
-<!-- <iframe class="external" src="http://localhost:8001/"></iframe>-->
+<iframe class="external" src="http://localhost:8001/"></iframe>
 
-Image of live demonstration. Code: <!-- .element: class="attribution" -->
+<!-- Image of live demonstration. -->
+Code: <!-- .element: class="attribution" -->
 [ webled.js](/code/led.js)
 
 Notes:
@@ -638,9 +639,8 @@ JavaScript and a little bit of hardware.
 
 Notes:
 
-This final demonstration is a little more complex. This is an mBot - made by
-a company here in Shenzhen called Make Block. These are the bots we'll be using
-tonight at the nodebots workshop.
+This final demonstration is a little more complex. This is an mBot by a company
+called MakeBlock.
 
 They have many features, including motors, sensors and can use bluetooth and wifi too.
 
@@ -744,42 +744,6 @@ because real life events make coding a bit more interesting.
 
 --- 
 
-## NodeBots tonight
-
-* Arduino IDE - arduino.cc
-* NodeJS installed
-* npm install johnny-five
-* github.com/jsconfcn/nodebots-session
-
-Notes:
-
-Tonight we will be doing a nodebots workshop using the mBots for teams of a few
-people to work together to make the robots and maybe have a sumo fight competition
-to see who the best JS robotics team is here.
-
-If you want to participate then you'll need these things up on the screen.
-
---- 
-
-## International NodeBots Day
-
-July 25, 2015 <!-- .element: class="bigtext" -->
-
-nodebotsday.com <!-- .element: class="bigtext" -->
-
-Notes:
-
-On July 25 there is a day of NodeBots all around the world. Over 30 cities are
-taking part with over a thousand JS developers all building robots and web
-hardware on the day. 
-
-If you want to take part, then organise a group, go to this site and you can
-find out more information. Or come talk to me as I am coordinating Australia 
-and Sri Lanka events.
-
---- 
-
-
 ## Resources
 
 * johnny-five.org
@@ -800,7 +764,7 @@ to build.
 
 <!-- .slide: class="title" -->
 
-JSConf China, July 11, 2015 <!-- .element: class="location" -->
+JSFoo India, September 19, 2015 <!-- .element: class="location" -->
 
 Andrew Fisher @ajfisher <!-- .element: class="author" -->
 

@@ -284,7 +284,7 @@ body {
 .reveal h1 {
   font-size: 2.77em;
   margin-top: 0.5em;
-  padding: 0.5em 0.3em;
+  padding: 1em 0.3em;
   display: inline-block;
   width: 67%;
   line-height: 1em;
@@ -332,7 +332,8 @@ body {
 .reveal p.help {
   color: #8b8b8b;
   font-size: 0.6em;
-  margin-left: 0.65em; }
+  margin-left: 0.65em;
+  display: none; }
 
 .reveal ol, .reveal ul {
   display: block;

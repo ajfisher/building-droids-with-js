@@ -89,7 +89,7 @@ $primaryGrey: rgb(63,63,63);
 .reveal h1 { 
     font-size: $heading1Size; 
     margin-top: 0.5em;
-    padding: 0.5em 0.3em;
+    padding: 1em 0.3em;
     display:inline-block; 
     width: 67%; 
     line-height: 1em; 
@@ -137,6 +137,7 @@ $primaryGrey: rgb(63,63,63);
     color: lighten($backgroundColor, 30%);
     font-size: 0.6em;
     margin-left: 0.65em;
+    display: none;
 }
 
 
