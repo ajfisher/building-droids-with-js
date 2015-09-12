@@ -25,12 +25,8 @@ Notes:
 My initial interest in computing came from an interest in electronics. 
 But the reality was that for a kid growing up in the late 80s, building serious 
 hardware was prohibitively expensive and required facilities that most kids 
-didn’t have access to in those days.
-
-Doing anything non-trivial in hardware was a very difficult undertaking. As
-a result, I moved to software. As you’d expect, in the world of software, the
-effort to reward ratio was far better than for hardware, especially for the
-attention span of a teenager.
+didn’t have access to in those days. As a result, as a teen I move to software 
+where you could get better results and faster.
 
 And this situation remained the case until recently.
 
@@ -51,7 +47,7 @@ $5. Sophisticated hardware became accessible to students, artists, kids and
 web people. With it, this community has brought ideas around design, user experience, art and
 software and architectural principles. 
 
-More recently, over the last few years, some great work has been done in the
+Over the last few years, some great work has been done in the
 node community getting JS to work with hardware like this - to the point
 where working with hardware using javascript is now extremely easy.
 
@@ -88,33 +84,9 @@ Then we'll play finish with some examples.
 
 Notes:
 
-Most people don't naturally think about JavaScript as a language that should 
-be used for programming hardware. JS is the language of the web! It's only
-place is in the browser? Right?
-
 Lets see how some of it's features make JS and hardware really powerful together.
 
 --- 
-
-### JavaScript is too dynamic to be precise...
-
-![](/images/mars1.png)<br/>
-![](/images/mars2.png)
-
-Notes:
-
-At the start of the JS hardware movement a few years ago this tweet came onto
-my feed. 
-
-The implication was that JS is so quirky and incapable of precision that
-not only would a rocket crash into a planet, but it would crash into Venus
-instead of Mars. 
-
-It's easy to pick on JS because the language is so mutable that you can do
-crazy things with it and yet we forget that statically typed and memory mapped
-languages have caused significant security and software bugs over the years.
-
----
 
 ### Real hardware engineers use C...
 
@@ -139,16 +111,6 @@ awful web interfaces known to man.
 
 ---
 
-### Web apps designed by hardware engineers
-<!-- .slide: data-background="/images/router.jpg" -->
-
-Notes:
-
-This is what happens when you get a hardware engineer to design web applications.
-This is recent as well - it came off my router at home.
-
----
-
 ### Why use JS and hardware?
 <!-- .slide: data-background="/images/atmega.jpg" -->
 
@@ -157,8 +119,7 @@ This is recent as well - it came off my router at home.
 
 Notes:
 
-Let's assume the language is as capable as any other - and besides the fact we
-are all JS developers here. Why use JavaScript compared to some other high 
+Why use JavaScript compared to some other high 
 level language.
 
 For me it really comes down to two things:
@@ -206,11 +167,19 @@ JS is designed to just work with this sort of behaviour.
 
 ---
 
-### Objects need structure and flexibility
+### Prototypes provide flexibility
 
 ```
-var motor = new Five.Motor();
-motor.start();
+var left_motor = new Five.motor({controller: 'I2C'});
+var right_motor = new Five.motor({controller: 'PCA34567'});
+
+left_motor.prototype.start = function() {
+    // make double speed 
+};
+
+left_motor.start();
+right_motor.start();
+
 ```
 
 Notes:
@@ -220,23 +189,6 @@ of this in a moment but the hardware framework we use allows us to consider
 hardware as objects as well such as the case of this motor. Really I don't 
 want to care about the underlying detail of how different types of motors work 
 - I just want to use it to make the wheels of my robot turn.
-
----
-
-### Prototypes are great
-
-```
-var left_motor = new Five.motor({controller: 'I2C'});
-var right_motor = new Five.motor({controller: 'PCA34567'});
-
-left_motor.start();
-right_motor.stop();
-
-left_motor.prototype.double_speed = function() { .. };
-
-```
-
-Notes:
 
 For end users this is awesome but as a developer writing JS drivers for things 
 like motors being able to define a shape and then allow you to attach the
@@ -257,7 +209,6 @@ as fast when you call start.
 Notes:
 
 That's enough of talking about why JS is really well suited to working with robotics.
-We all work with JavaScript and know it's a real and interesting language -
 Let's move on to what the hardware stack looks like.
 
 ---
@@ -268,10 +219,9 @@ Let's move on to what the hardware stack looks like.
 
 Notes:
 
-There are a few different projects that can use JavaScript on hardware now,
-however the one we're going to talk about is called nodebots as it's very much
-aimed at a NodeJS implementation with hardware. At the core of nodebots are
-transport layers to deal with things like talking over USB or wireless or serial
+nodebots is generally what we call JS and robots as it's very much
+aimed at a NodeJS implementation. At the core of nodebots are
+transport layers that deal with things like talking over USB or wireless or serial
 connections and then wrapped around that is a framework called Johnny Five.
 
 ---
@@ -284,15 +234,14 @@ connections and then wrapped around that is a framework called Johnny Five.
 
 Notes:
 
-Johnny Five was started by this guy - Rick Waldron, and there are now about
-30 core project members, nearly 100 contributors and over 2000
-commits to the codebase in the last couple of years. It's a very active and
-expanding project and we're always looking for more contributors to help out.
+Johnny Five was started by this guy - Rick Waldron, and there's now many 
+members of the core team plus over a hundred contributors to the project.
+It's very active and expanding project and we're always looking for more 
+contributors to help out.
 
-Johnny Five is a hardware abstraction framework so instead of writing code that
-is specific to a chip you can talk about components that behave in different
-ways and leave the implementation details up to the people who write the 
-board level interfaces whereupon you can then use it.
+Johnny Five abstracts the hardware into components that behave the same way regardless
+of the board that you're using it on. Allowing you to concentrate on your end
+not writing code for different board types.
 
 ---
 
@@ -308,10 +257,8 @@ Notes:
 
 So this is what the typical JS hardware stack looks like. 
 
-We have a board which could have sensors and actuators. Actuators is just a
-fancy word for something that does something in the real world - like a motor
-or an LED etc. Most controller boards can't run JS yet so we normally need to 
-put some firmware on them to do what we want.
+We have a board which could have sensors and actuators. Most controller boards 
+can't run JS yet so we normally need to put some firmware on them to do what we want.
 
 This talks via a communications protocol to what is called an IO Plugin. IO
 plugins are a Johnny Five idea that tries to get hardware to behave in consistent
@@ -345,26 +292,6 @@ much stays the same all the time.
 
 ---
 
-## NodeBots hardware
-
-* Servos, Motors, ESCs, Stepper motors
-* Accelerometers, Gyroscopes, Compasses, IMUs
-* Temperature, Proxitimity, Pressure sensors
-* LEDs, NeoPixels, Pixel matrices
-* Switches, Joysticks, Buttons
-* LCDs
-
-Notes:
-
-In terms of hardware - there is a lot covered in Johnny Five and more core
-components are still being added. The intent is to have the majority of the
-most common electronics components you're likely to come across available in
-the framework and then you can use then to compose bigger objects that then
-represent your thing that you're making.
-
-
----
-
 ### Installation 
 
 * Board development environment (eg Arduino)
@@ -382,7 +309,6 @@ IDE and install it. You then put the IO protocol on the board that you need -
 for an arduinon that just means using Firmata and then it's an npm install
 and you are then writing code.
 
-
 ---
 
 ## Examples and applications
@@ -396,21 +322,7 @@ Notes:
 
 With all this power, what sort of things can you build? Well I'm going to show
 you some examples of some fun things people have made and show you some code
-as well.
-
----
-
-### SimpleBot
-<!-- .slide: data-background="/images/simplebot.jpg" -->
-
-Simplebot (CC)<!-- .element: class="attribution" -->
-[AJ Fisher](https://twitter.com/ajfisher) 
-
-Notes:
-
-This is a basic teaching bot we use in Australia for nodebots events. Very
-basic and allows you to explore fundamentals of robotics design and motion. It
-is very cheap and fast to build so good for beginners.
+as well. 
 
 ---
 
@@ -549,11 +461,7 @@ var http = require('http');
 var server = http.createServer(app);
 var board;
 
-//
-//
 // Set up the application server
-//
-
 app.configure(function() {
     app.set('port', 8001);
     app.use(app.router);
@@ -561,7 +469,6 @@ app.configure(function() {
 });
 
 server.listen(app.get('port'));
-
 
 // Set up Socket IO
 var io = require('socket.io').listen(server);
@@ -576,21 +483,18 @@ app.get('/', function(request, response) {
 io.sockets.on("connection", function(socket) {
 
     if (board.ready) {
-        socket.emit("connect_ack", {msg: "Welcome Control", state: "ONLINE"});
+        socket.emit("connect_ack", {msg: "Welcome ", state: "ONLINE"});
     } else {
-        socket.emit("connect_ack", {msg: "Welcome Control", state: "NOPINS"});
+        socket.emit("connect_ack", {msg: "Welcome", state: "NOPINS"});
     }
 
     socket.on("toggle", function(data) {
         // use the control mech to switch the LED on or off
         board.digitalWrite(pin, data.state);
     });
-
-
 });
 
 // SET up the arduino and firmata
-
 var pin = 10; // led pin to turn on.
 board = new five.Board(process.argv[2], function(err) {
     if (err){
@@ -598,7 +502,6 @@ board = new five.Board(process.argv[2], function(err) {
         process.exit();
     }
     console.log("Control via your browser now");
-
 });
 ```
 
@@ -749,7 +652,7 @@ because real life events make coding a bit more interesting.
 * johnny-five.org
 * gitter.im/rwaldron/johnny-five
 * node-ardx.org
-* Make JS Robotics book (BOOKJSROBOTICS at MakerShed)
+* Make JS Robotics book (FIX THIS at MakerShed)
 
 Notes:
 
