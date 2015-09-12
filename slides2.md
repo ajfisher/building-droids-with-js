@@ -1,4 +1,3 @@
-
 # Droids, JavaScript and Web Connected Hardware
 
 <!-- .slide: class="title" -->
@@ -633,26 +632,12 @@ So this is just running over bluetooth and is controlled from javascript.
 
 ---
 
-## Look for droids
-<!-- .slide: data-background="/images/droids.jpg" -->
-
-(CC) Flickr <!-- .element: class="attribution" -->
-[⣫⣤⣇⣤](http://www.flickr.com/photos/donsolo/3768623542/)
-
-Notes:
-
-So hopefully that gives you a good view of what is happening with JavaScript and
-hardware. It is lots and lots of fun and is really good for your coding skill
-because real life events make coding a bit more interesting. 
-
---- 
-
 ## Resources
 
 * johnny-five.org
 * gitter.im/rwaldron/johnny-five
 * node-ardx.org
-* Make JS Robotics book (FIX THIS at MakerShed)
+* Make JS Robotics book ("MAKEJS" 15% off at MakerShed.com)
 
 Notes:
 
