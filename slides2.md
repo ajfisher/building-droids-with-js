@@ -172,8 +172,9 @@ JS is designed to just work with this sort of behaviour.
 var left_motor = new Five.motor({controller: 'I2C'});
 var right_motor = new Five.motor({controller: 'PCA34567'});
 
-left_motor.prototype.start = function() {
+left_motor.start = function(speed) {
     // make double speed 
+    this.speed = 2*speed;
 };
 
 left_motor.start();
