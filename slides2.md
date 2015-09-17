@@ -7,13 +7,13 @@ JSFoo India, September 19, 2015 <!-- .element: class="location" -->
 Andrew Fisher @ajfisher <!-- .element: class="author" -->
 
 Notes:
-Hi! My name is Andrew Fisher and I’m an interaction researcher. Today I
+Hi! My name is Andrew Fisher and I'm a developer and member of the nodebots team. Today I
 want to talk to you about Droids, JavaScript and Web Connected hardware for 
 the next 25 minutes.
 
 ---
 
-## JS all the real things
+## Making things
 <!-- .slide: data-background="/images/typewriter.jpg" -->
 
 
@@ -24,7 +24,7 @@ Notes:
 My initial interest in computing came from an interest in electronics. 
 But the reality was that for a kid growing up in the late 80s, building serious 
 hardware was prohibitively expensive and required facilities that most kids 
-didn’t have access to in those days. As a result, as a teen I move to software 
+didn't have access to in those days. As a result, as a teen I moved to software 
 where you could get better results and faster.
 
 And this situation remained the case until recently.
@@ -47,8 +47,7 @@ web people. With it, this community has brought ideas around design, user experi
 software and architectural principles. 
 
 Over the last few years, some great work has been done in the
-node community getting JS to work with hardware like this - to the point
-where working with hardware using javascript is now extremely easy.
+node community getting JS to work with hardware like this
 
 So today, I want to talk to you about that and how all of you can all start
 working with hardware with JavaScript and we'll see some of the great things
@@ -83,7 +82,8 @@ Then we'll play finish with some examples.
 
 Notes:
 
-Lets see how some of it's features make JS and hardware really powerful together.
+So let's start by seeing how some of it's features make JS and hardware 
+really powerful together.
 
 --- 
 
@@ -94,19 +94,10 @@ Lets see how some of it's features make JS and hardware really powerful together
 
 Notes:
 
-Given how long C has ruled the hardware world, there is a major bias in that
+C has long ruled the hardware world for 30 years or more so there is a major bias in that
 all hardware must use C. This is still mostly the case - especially with older
 or cheaper chips. However the next generation of medium cost chips are more or
-less here now that can run python and JavaScript natively.
-
-Let me ask a question:
-
-How many of you know how to program in C?
-
-Okay - so how many of you LOVE to program in C? None. No one loves programming
-in C even if you're capable of it - it takes a long time to do not a lot and 
-let's face it, trying to build web applications in C produces some of the most
-awful web interfaces known to man.
+less here now that can run python and JavaScript natively. 
 
 ---
 
@@ -118,13 +109,13 @@ awful web interfaces known to man.
 
 Notes:
 
-Why use JavaScript compared to some other high 
-level language.
+So why use JavaScript compared to some other high level language.
 
 For me it really comes down to two things:
 
-* JavaScript's inherent event handling
-* JavaScript's dynamic object prototyping
+* JavaScript's event handling 
+
+* JavaScript's prototypes
 
 ---
 
@@ -184,19 +175,17 @@ right_motor.start();
 
 Notes:
 
-We're all familiar with the way JS handles objects. And I'll show you more
-of this in a moment but the hardware framework we use allows us to consider
-hardware as objects as well such as the case of this motor. Really I don't 
-want to care about the underlying detail of how different types of motors work 
-- I just want to use it to make the wheels of my robot turn.
-
-For end users this is awesome but as a developer writing JS drivers for things 
-like motors being able to define a shape and then allow you to attach the
-appropriate controller is great too.
+The other feature that is awesome for hardware is JS's prototypical inheritance. 
+As someone who writes drivers for hardware in JS this means we can make the 
+shape of an object like a motor consistent but then dynamically assign different 
+controllers and the end user doesn't need to worry about what is happening down low. 
+You can just write code to start the motor turning and pass a speed in.
 
 Likewise as the end user you all know you can extend the prototype and make your
 own versions of it if you need something really specific such as going twice
 as fast when you call start.
+
+These features make writing abstract code for hardware much easier and cleaner.
 
 ---
 
@@ -208,8 +197,8 @@ as fast when you call start.
 
 Notes:
 
-That's enough of talking about why JS is really well suited to working with robotics.
-Let's move on to what the hardware stack looks like.
+So Javascript is well suited to working with hardware, so let's take a look at
+what the hardware stack looks like.
 
 ---
 
@@ -219,7 +208,7 @@ Let's move on to what the hardware stack looks like.
 
 Notes:
 
-nodebots is generally what we call JS and robots as it's very much
+So nodebots is generally what we call JS and robots as it's very much
 aimed at a NodeJS implementation. At the core of nodebots are
 transport layers that deal with things like talking over USB or wireless or serial
 connections and then wrapped around that is a framework called Johnny Five.
@@ -236,8 +225,6 @@ Notes:
 
 Johnny Five was started by this guy - Rick Waldron, and there's now many 
 members of the core team plus over a hundred contributors to the project.
-It's very active and expanding project and we're always looking for more 
-contributors to help out.
 
 Johnny Five abstracts the hardware into components that behave the same way regardless
 of the board that you're using it on. Allowing you to concentrate on your end

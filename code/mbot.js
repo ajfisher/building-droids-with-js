@@ -1,7 +1,7 @@
 var five = require("johnny-five");
 
-var max_speed_l = 200;
-var max_speed_r = 190;
+var max_speed_l = 150;
+var max_speed_r = 153;
 
 // set up the input
 var stdin = process.openStdin();
@@ -38,12 +38,12 @@ stdin.on('keypress', function(chunk, key) {
                 l_motor.forward(max_speed_l);
 				break;
 			case "left":
-                l_motor.forward(max_speed_l);
-                r_motor.forward(max_speed_r);
+                l_motor.forward(max_speed_l/2);
+                r_motor.forward(max_speed_r/2);
 				break;
 			case "right":
-                r_motor.reverse(max_speed_r);
-                l_motor.reverse(max_speed_l);
+                r_motor.reverse(max_speed_r/2);
+                l_motor.reverse(max_speed_l/2);
 				break;
 			case "space":
                 l_motor.stop();
