@@ -64,11 +64,11 @@ the community has done along the way..
 Notes:
 So to do this, we'll consider:
 
-Why javascript and why would we do this in JS
+What makes JS good for hardware
 
-We'll then look at the hardware stack and show some code 
+We'll then look at the hardware stack
 
-Then we'll play finish with some examples.
+Then I'll show some examples and some demos
 
 ---
 
@@ -82,8 +82,7 @@ Then we'll play finish with some examples.
 
 Notes:
 
-So let's start by seeing how some of it's features make JS and hardware 
-really powerful together.
+So let's start by looking at what makes JS and hardware really powerful together.
 
 --- 
 
@@ -94,10 +93,10 @@ really powerful together.
 
 Notes:
 
-C has long ruled the hardware world for 30 years or more so there is a major bias in that
+In the hardware world, C has ruled for 30 years so there's an assumption that
 all hardware must use C. This is still mostly the case - especially with older
 or cheaper chips. However the next generation of medium cost chips are more or
-less here now that can run python and JavaScript natively. 
+less here now that can run python and JavaScript natively on the board. 
 
 ---
 
@@ -111,11 +110,7 @@ Notes:
 
 So why use JavaScript compared to some other high level language.
 
-For me it really comes down to two things:
-
-* JavaScript's event handling 
-
-* JavaScript's prototypes
+For me it's mainly because of JS' event handling and ptototypical inheritance.
 
 ---
 
@@ -128,11 +123,10 @@ Twitter: <!-- .element: class="attribution" -->
 
 Notes:
 
-JavaScript has incredible event handling. We tend to take this for granted, but
-due to it's birth as an interface related language, it has one of the most
-incredible event systems of any modern language. If you work in NodeJS then you
-know that you have EventEmitter available and it's just amazing at allowing
-different parts of your application to talk to each other.
+JavaScript has incredible event handling. We tend to take this for granted, as
+wel developers. If you work in NodeJS then you have probably worked with EventEmitter 
+and it's just amazing at allowing different parts of your application to talk to 
+each other. This is really useful in the hardware world.
 
 ---
 
@@ -176,16 +170,21 @@ right_motor.start();
 Notes:
 
 The other feature that is awesome for hardware is JS's prototypical inheritance. 
-As someone who writes drivers for hardware in JS this means we can make the 
-shape of an object like a motor consistent but then dynamically assign different 
-controllers and the end user doesn't need to worry about what is happening down low. 
+
+Being able to define a shape of an api for an object in hardware and then 
+dynamically bring in a controller to deal with the implementation details allows
+us to work with many different types of hardware effortlessly such as these 
+motors here.
+
+As an end user of the API you don't need to worry about what happens down low,
 You can just write code to start the motor turning and pass a speed in.
 
-Likewise as the end user you all know you can extend the prototype and make your
-own versions of it if you need something really specific such as going twice
-as fast when you call start.
+But also it means if you have a specific case you need to address, you can 
+extend or redefine the object with your own controller say like making the
+motor turn twice as fast or something.
 
-These features make writing abstract code for hardware much easier and cleaner.
+This makes prototyping much much faster but it also means we can create common
+structures for components in a way that's almost impossible in C.
 
 ---
 
@@ -197,8 +196,8 @@ These features make writing abstract code for hardware much easier and cleaner.
 
 Notes:
 
-So Javascript is well suited to working with hardware, so let's take a look at
-what the hardware stack looks like.
+So Javascript is well suited I think to working with hardware, so let's take a 
+look at what the hardware stack looks like.
 
 ---
 
@@ -208,10 +207,11 @@ what the hardware stack looks like.
 
 Notes:
 
-So nodebots is generally what we call JS and robots as it's very much
-aimed at a NodeJS implementation. At the core of nodebots are
-transport layers that deal with things like talking over USB or wireless or serial
-connections and then wrapped around that is a framework called Johnny Five.
+Nodebots is what we call JavaScript working with Hardware through NodeJS.
+The core of NodeBots is really transport protocols to allow us to talk over
+USB, wireless or serial connections. 
+
+Then, wrapped around this we have a framework called Johnny Five.
 
 ---
 
@@ -223,12 +223,13 @@ connections and then wrapped around that is a framework called Johnny Five.
 
 Notes:
 
-Johnny Five was started by this guy - Rick Waldron, and there's now many 
-members of the core team plus over a hundred contributors to the project.
+Johnny Five abstracts hardware into components that behave the same way regardless
+of the controller for the hardware and the board that you're using it on. 
+This allows you to concentrate on building great things and allows you to 
+prototype very rapidly.
 
-Johnny Five abstracts the hardware into components that behave the same way regardless
-of the board that you're using it on. Allowing you to concentrate on your end
-not writing code for different board types.
+Johnny Five was started by this guy - Rick Waldron, and there's now many 
+members of the core team who work on this from all around the world.
 
 ---
 
@@ -249,14 +250,14 @@ can't run JS yet so we normally need to put some firmware on them to do what we 
 
 This talks via a communications protocol to what is called an IO Plugin. IO
 plugins are a Johnny Five idea that tries to get hardware to behave in consistent
-ways via a protocol. Think of this sort of like HTTP requests and responses - the
-client doesn't really care what the server does as long as it responds properly.
+ways via a protocol 
 
-Johnny Five gives us hardware abstraction so we can turn motors and LEDs into 
-JavaScript objects and interact with them. As a side effect we get all of NodeJS
-as well so that means we can start doing interesting things like linking up
-with our normal web protocols. And then finally we can add clients for things
-like UI, input and what not.
+Johnny Five gives us abstraction on components so we can turn motors and LEDs into 
+JavaScript objects and interact with them consistently. 
+
+As a side effect we get all of NodeJS as well so that means we can start doing 
+interesting things like linking up with our normal web protocols. 
+And then finally we can add clients for things like UI and what not.
 
 ---
 
@@ -337,9 +338,7 @@ different colour. So you can even use JavaScript in your clothing!!
 
 Notes:
 
-Here is an example of using nodeJS to make a physical game. This is made by 
-Adrian Catalan and uses nodebots and node-pixel to make a tetris game on
-LED panels.
+Here is an example by Adrian Catalan of using nodeJS to make a physical game. 
 
 ---
 
@@ -425,7 +424,7 @@ Code: <!-- .element: class="attribution" -->
 
 Notes:
 
-So let's see that work. Switch to code.
+So let's see that work.
 
 Easy right - that is like the blink tag in hardware!!
 
