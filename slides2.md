@@ -188,7 +188,7 @@ structures for components in a way that's almost impossible in C.
 
 ---
 
-### JS <3 Robotics
+### JS ❤ Robotics
 <!-- .slide: data-background="/images/robot_love.jpg" -->
 
 (CC) Flickr <!-- .element: class="attribution" -->
