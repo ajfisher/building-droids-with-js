@@ -415,11 +415,9 @@ and then calls it.
 ---
 
 ### Demonstration
-<!-- slide: data-background="/images/blinkled.gif" -->
+<!-- .slide: data-background="/images/blinkled.gif" -->
 
-<!-- Image of live demonstration. -->
-
-Code: <!-- .element: class="attribution" -->
+Image of live demonstration. Code: <!-- .element: class="attribution" -->
 [ led.js](/code/led.js)
 
 Notes:
@@ -505,12 +503,11 @@ make it respond to a message.
 ---
 
 ### Web connected light
-<!-- slide: data-background="/images/webled.gif" -->
+<!-- .slide: data-background="/images/webled.gif" -->
 
-<iframe class="external" src="http://localhost:8001/"></iframe>
+<!-- iframe class="external" src="http://localhost:8001/" -->
 
-<!-- Image of live demonstration. -->
-Code: <!-- .element: class="attribution" -->
+Image of live demonstration. Code: <!-- .element: class="attribution" -->
 [ webled.js](/code/led.js)
 
 Notes:
