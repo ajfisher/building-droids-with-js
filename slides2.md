@@ -608,7 +608,7 @@ though there is some code it is very simple.
 ### Demonstration
 <!-- .slide: data-background="/images/mbot.gif" -->
 
-Image of alternative demonstration. Code: <!-- .element: class="attribution" -->
+Code: <!-- .element: class="attribution" -->
 [mbot.js](/code/led.js)
 
 Notes:
