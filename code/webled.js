@@ -20,7 +20,7 @@ var board;
 app.configure(function() {
     app.set('port', 8001);
     app.use(app.router);
-    app.use(express.static(__dirname + '/public'));
+    app.use(express.static(__dirname + '/webled'));
 });
 
 server.listen(app.get('port'));
@@ -33,7 +33,7 @@ io.set('log level', 1);
 console.log("MESSAGE: Web server now listening");
 
 app.get('/', function(request, response) {
-    response.sendfile(__dirname + '/public/index.html');
+    response.sendfile(__dirname + '/webled/index.html');
 });
 
 io.sockets.on("connection", function(socket) {
