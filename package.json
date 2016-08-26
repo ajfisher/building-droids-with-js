@@ -19,7 +19,7 @@
   "dependencies": {
     "express": "3.2.x",
     "grunt-cli": "^0.1.13",
-    "johnny-five": "^0.8.85",
+    "johnny-five": "^0.10.0",
     "mustache": "~0.7.2",
     "socket.io": "~0.9.16",
     "underscore": "~1.5.1"
