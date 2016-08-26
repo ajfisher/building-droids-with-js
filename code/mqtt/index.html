@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="lib/jquery.min.js"></script>
+        <script src="lib/d3.min.js"></script>
+        <script src="lib/epoch.min.js"></script>
+        <script src="/mqtt.js"></script>
+        <link rel="stylesheet" href="lib/epoch.min.css">
+
+    </head>
+    <body>
+        <div id="area" class="epoch category10" style="height: 300px;"></div>
+        <script type="text/javascript">
+
+            var data = [
+                {
+                    label: "Temp Data",
+                    values: [
+                    ],
+                },
+            ];
+            var lightchart = $('#area').epoch({
+                type: 'time.line',
+                data: data,
+                range: [0, 30],
+                ticks: {time: 5, right: 5, left: 5},
+                pixelRatio: 1,
+                axes: ['left', 'right', 'bottom']
+            });
+
+            var client = mqtt.connect();
+            client.subscribe('tempfeed');
+            var points = [];
+
+            client.on("message", function(topic, payload) {
+                if (topic == "tempfeed") {
+                    points.push(JSON.parse(payload)); // chuck these on a buffer
+                }
+            });
+
+            setInterval(function() {
+                if (points.length > 0) {
+                    lightchart.push(points);
+                    points = [];
+                }
+            }, 1000);
+
+            client.publish("presence", "web hello");
+
+        </script>
+    </body>
+</html>
