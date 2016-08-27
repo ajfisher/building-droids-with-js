@@ -6,6 +6,9 @@
         <script src="lib/epoch.min.js"></script>
         <script src="/mqtt.js"></script>
         <link rel="stylesheet" href="lib/epoch.min.css">
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/temp.css">
 
     </head>
     <body>
@@ -14,33 +17,32 @@
 
             var data = [
                 {
-                    label: "Temp Data",
-                    values: [
-                    ],
+                    label: "Temp 1 Data",
+                    values: [],
                 },
             ];
-            var lightchart = $('#area').epoch({
+            var tempchart = $('#area').epoch({
                 type: 'time.line',
                 data: data,
-                range: [0, 30],
                 ticks: {time: 5, right: 5, left: 5},
                 pixelRatio: 1,
                 axes: ['left', 'right', 'bottom']
             });
 
             var client = mqtt.connect();
-            client.subscribe('tempfeed');
+            client.subscribe('tempfeed/data');
             var points = [];
 
             client.on("message", function(topic, payload) {
-                if (topic == "tempfeed") {
-                    points.push(JSON.parse(payload)); // chuck these on a buffer
+                if (topic == "tempfeed/data") {
+                    var dp = JSON.parse(payload);
+                    points.push(dp); // chuck these on a buffer
                 }
             });
 
             setInterval(function() {
                 if (points.length > 0) {
-                    lightchart.push(points);
+                    tempchart.push(points);
                     points = [];
                 }
             }, 1000);

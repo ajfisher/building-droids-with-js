@@ -386,6 +386,13 @@ iframe.external {
 p.bigtext {
   font-size: 2em; }
 
+// For SVG styles for charts
+
+line, axis {
+    stroke: rgba(255, 255, 255, 0.85) !important;
+}
+
+
 body.print-pdf .reveal a.download {
   display: none; }
 
